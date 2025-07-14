@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import { useForm } from "react-hook-form";
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import SocialSignIn from './SocialSignIn';
+import toast from 'react-hot-toast';
 
 const Login = () => {
   const { loginUser } = useAuth();
@@ -14,9 +15,9 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-//   const navigate = useNavigate();
-//   const location = useLocation();
-  // const form = location.state?.form || '/'
+  const navigate = useNavigate();
+  const location = useLocation();
+  const form = location.state?.form || '/'
   //   console.log(location.state)
   const onSubmit = (data) => {
     console.log(data);
@@ -24,9 +25,9 @@ const Login = () => {
     loginUser(email, password)
       .then((result) => {
         console.log(result.user);
-        // toast.success("Successfully Login");
+        toast.success("Successfully Login");
         // navigate(`${location.state ? location.state : "/"}`);
-        // navigate(form)
+        navigate(form)
       })
       .catch((error) => {
         if (error.code == "auth/invalid-credential")
@@ -71,7 +72,7 @@ const Login = () => {
                   required: true,
                 })}
                 placeholder="Password"
-                className="input border-gray-300 focus:border-2 focus:border-primary-300 focus:border-[#FB9E3A] focus:outline-none focus:ring-4 focus:ring-[#f7945220] bg-transparent placeholder:text-gray-300 placeholder:text-xs w-full"
+                className="input border-[#9ca3af62] focus:border-2 focus:border-primary-300 focus:border-[#91C8E4] focus:outline-none focus:ring-4 focus:ring-[#f7945220] bg-transparent placeholder:text-gray-300 placeholder:text-xs w-full"
               />
               <button
                 onClick={() => setShowPass(!showPass)}

@@ -13,17 +13,17 @@ ul > li > a:hover {
 }
 
 form > fieldset > input:focus {
-  border: 2px solid #f58f4b;
+  border: 2px solid #91C8E4;
   outline: none;
   box-shadow: 0 0 5px 8px #f7945220;
 }
 form > input:focus {
-  border: 2px solid #f58f4b;
+  border: 2px solid #91C8E4;
   outline: none;
   box-shadow: 0 0 5px 8px #f7945220;
 }
 form > select:focus {
-  border: 2px solid #f58f4b;
+  border: 2px solid #91C8E4;
   outline: none;
   box-shadow: 0 0 5px 8px #f7945220;
 }

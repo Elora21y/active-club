@@ -6,6 +6,8 @@ import useAxios from '../../hooks/useAxios';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import SocialSignIn from './SocialSignIn';
+import axios from 'axios';
+import image from '../../assets/image-upload-icon.png'
 
 const Register = () => {
     const { createUser, updateUser } = useAuth();
@@ -13,8 +15,10 @@ const Register = () => {
   const [showPass, setShowPass] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-//   const [profilePic, setProfilePic] = useState("");
-  //   console.log(location.state)
+  const [profilePic, setProfilePic] = useState("");
+  const [profileLoading, setProfileLoading] = useState(false);
+  const form = location.state?.form || '/'
+    console.log(location.state)
   const {
     register,
     handleSubmit,
@@ -37,51 +41,59 @@ const Register = () => {
         // const userRes = await axiosInstance.post(`/users`, userInfo);
         // console.log(userRes.data);
 
-        //update user profile in firebase
-        // const updateInfo = {
-        //   displayName: data.name,
-        //   photoURL: profilePic,
-        // };
-        // updateUser(updateInfo)
-        //   .then(() => {
-        //     // console.log("profile updated");
-        //     if(userRes.data.insertedId){
-        //       toast.success("Successfully Login");
-        //       navigate(`${location.state ? location.state : "/"}`);
-        //     }
-        //   })
-        //   .catch((err) => console.log(err));
+        // update user profile in firebase
+        const updateInfo = {
+          displayName: data.name,
+          photoURL: profilePic,
+        };
+        updateUser(updateInfo)
+          .then(() => {
+            // console.log("profile updated");
+            // if(userRes.data.insertedId){
+              toast.success("Successfully Login");
+              navigate(form);
+            // }
+          })
+          .catch((err) => console.log(err));
       })
       .catch((error) => {
         console.log(error);
       });
   };
-//   const handleImgUpload = async (e) => {
-//     const img = e.target.files[0];
-//     console.log(img);
-//     if (!img) return;
+  const handleImgUpload = async (e) => {
+    const img = e.target.files[0];
+    // console.log(img);
+    if (!img) return;
 
-//     const formData = new FormData();
-//     formData.append("image", img);
+    const formData = new FormData();
+    formData.append("image", img);
 
-//     //https://api.imgbb.com/1/upload?expiration=600&key=YOUR_CLIENT_API_KEY
-//     const imgUploadUrl = `https://api.imgbb.com/1/upload?key=${
-//       import.meta.env.VITE_image_upload_key
-//     }`;
-//     const res = await axios.post(imgUploadUrl, formData);
-//     console.log(res);
-//     setProfilePic(res.data.data.url);
-//   };
+    //https://api.imgbb.com/1/upload?expiration=600&key=YOUR_CLIENT_API_KEY
+    const imgUploadUrl = `https://api.imgbb.com/1/upload?key=${
+      import.meta.env.VITE_image_upload_key
+    }`;
+    setProfileLoading(true)
+    try {
+    const res = await axios.post(imgUploadUrl, formData);
+    setProfilePic(res.data.data.url);
+  } catch (error) {
+    console.error("Image upload failed", error);
+    toast.error("Failed to upload image");
+  } finally {
+    setProfileLoading(false); 
+  }
+  };
   return (
     <div>
       <h2 className="text-center text-4xl lg:text-5xl font-bold mb-5 text-secondary">
         Please Register
       </h2>
-      <div className="card bg-base-100 shrink-0 shadow shadow-primary hover:shadow-md duration-500 transition-shadow">
-        <div className="card-body w-[300px] sm:w-96 md:w-[400px]">
+      <div className="card  shrink-0 shadow shadow-primary hover:shadow-md duration-500 transition-shadow">
+        <div className="card-body w-[300px] sm:w-96 md:w-md">
           {/* form */}
           <form onSubmit={handleSubmit(onSubmit)} className="fieldset">
-            {/* name */}
+       
+                {/* name */}
             <label className="label inline-block">Name</label>
             <input
               type="text"
@@ -91,14 +103,21 @@ const Register = () => {
             />
             {/* photo */}
             <label className="label" 
-            // onChange={handleImgUpload}
+            onChange={handleImgUpload}
             >
-              <img
-                // src={profilePic ? profilePic : image}
-                alt=""
-                className="w-14 h-14 "
+               <div className="flex text-center items-center justify-center py-2 mx-auto border w-full border-[#9ca3af8f] border-dashed rounded-lg min-h-14">
+            {
+              profileLoading ? 
+              <span className="loading loading-spinner text-info"></span>
+              :
+               <img
+                src={ profilePic ? profilePic : image}
+                alt="profile"
+                className="w-14 h-14 object-cover "
               />
-              Upload Image
+            }
+             </div>
+              
               <input type="file" className="hidden" />
             </label>
             {errors.name?.type === "required" && (
@@ -131,12 +150,12 @@ const Register = () => {
                   pattern: /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
                 })}
                 placeholder="Password"
-                className="input border-gray-300 focus:border-2 focus:border-primary-300 focus:border-[#FB9E3A] focus:outline-none focus:ring-4 focus:ring-[#f7945220] bg-transparent placeholder:text-gray-300 placeholder:text-xs w-full"
+                className="input border-[#9ca3af62] focus:border-2 focus:border-primary-300 focus:border-[#91C8E4] focus:outline-none focus:ring-4 focus:ring-[#f7945220] bg-transparent placeholder:text-gray-300 placeholder:text-xs w-full"
               />
               <button
                 onClick={() => setShowPass(!showPass)}
                 type="button"
-                className="absolute text-gray-400 btn btn-xs btn-ghost z-10 right-1 top-6 hover:bg-white border-0"
+                className="absolute text-gray-400 btn btn-xs btn-ghost z-10 right-1 top-6 hover:bg-transparent border-0"
               >
                 {showPass ? (
                   <FaRegEyeSlash size={15} />
