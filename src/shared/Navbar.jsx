@@ -1,11 +1,14 @@
-import React from 'react';
-import { Link, NavLink } from 'react-router';
+import React from "react";
+import { Link, NavLink } from "react-router";
 
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
-import NavLogo from './NavLogo';
+import NavLogo from "./NavLogo";
+import useAuth from "../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
-      const links = (
+  const { user, logOut } = useAuth();
+  const links = (
     <>
       <li>
         <NavLink to="/">Home</NavLink>
@@ -15,54 +18,60 @@ const Navbar = () => {
       </li>
     </>
   );
-  // const handleLogout = () => {
-  //   logOut()
-  //     .then(() => toast.success("Successfully log out"))
-  //     .catch((error) => toast.error(error));
-  // };
+  const handleLogout = () => {
+    logOut()
+      .then(() => toast.success("Successfully log out"))
+      .catch((error) => toast.error(error));
+  };
   return (
     <div className="bg-transparent shadow right-0 left-0 border-b border-primary/30 absolute">
       <div className=" max-w-7xl mx-auto px-2 sm:px-8 xl:px-0 navbar p-0">
-        
-          <NavLogo/>
-        <div className="navbar-end gap-1 sm:gap-2 lg:gap-3 ">
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-2 ">{links}</ul>
+        <div className="navbar-start gap-1">
+        <NavLogo />
         </div>
-          {/* {user ? (
+        <div className="navbar-end gap-1 sm:gap-2 lg:gap-3 ">
+          <div className="navbar-center hidden lg:flex">
+            <ul className="menu menu-horizontal px-2 ">{links}</ul>
+          </div>
+          {user ? (
             <>
-              <img
-                src={
-                  user?.photoURL
-                    ? user.photoURL
-                    : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_htyN2AsYGqluVNNRR2AIXtpLph4pk608Uw&s"
-                }
-                alt="Profile Pic"
-                className="w-8 h-8 sm:w-10 sm:h-10  md:w-12 md:h-12 rounded-full object-cover cursor-pointer"
-                data-tooltip-id="user-tooltip"
-                data-tooltip-content={`Hi! ${user?.displayName || "Guest"}`}
-                data-tooltip-place="bottom"
-                data-tooltip-delay-show={100}
-                data-tooltip-delay-hide={500}
-              />
-              <Tooltip
-                id="user-tooltip"
-                place="bottom"
-                style={{
-                  backgroundColor: "#FA812F",
-                  color: "white",
-                  fontWeight: "500"
-                }}
-              />
-
-              <button
-                onClick={handleLogout}
-                className="btn orange-btn "
-              >
-                Logout
-              </button>
+              <div className="dropdown ">
+                <div tabIndex={0} role="button">
+                  <img
+                    src={
+                      user?.photoURL
+                        ? user.photoURL
+                        : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_htyN2AsYGqluVNNRR2AIXtpLph4pk608Uw&s"
+                    }
+                    alt="Profile Pic"
+                    className="w-8 h-8 sm:w-10 sm:h-10  md:w-12 md:h-12 rounded-full object-cover cursor-pointer "
+                  />
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content menu bg-base-100 rounded-box z-10 w-48 p-2 shadow-sm right-0"
+                >
+                  <li>
+                    <p>Hi! {user.displayName}</p>
+                  </li>
+                  <li>
+                    {" "}
+                    <Link to="/dashboard">Dashboard</Link>{" "}
+                  </li>
+                  <li>
+                    {" "}
+                    <button
+                      onClick={handleLogout}
+                      className="orange-btn btn btn-xs "
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </div>
+             
             </>
-          ) : ( */}
+          ) : (
             <>
               <Link
                 to="/auth/login"
@@ -77,7 +86,7 @@ const Navbar = () => {
                 Register
               </Link> */}
             </>
-          {/* )} */}
+          )}
           {/* menubar */}
           <div className="dropdown">
             <div
