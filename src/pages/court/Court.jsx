@@ -33,6 +33,7 @@ const Court = () => {
 
     if (result.isConfirmed) {
       const res = await axiosSecure.delete(`/courts/${id}`);
+    //   console.log(res)
       if (res.data?.deletedCount > 0) {
         Swal.fire("Deleted!", "Court has been deleted.", "success");
         refetch();
@@ -70,9 +71,6 @@ const Court = () => {
                 <td>৳{court.price_per_session}</td>
                 <td>{new Date(court.created_at).toLocaleDateString()}</td>
                 <td className="flex gap-2 justify-center">
-                  {/* <button className="btn btn-xs btn-info" onClick={() => openModal(court)}>
-                    <FaEdit />
-                  </button> */}
                     {/* edit button*/}
                       <button
                         className="text-secondary btn btn-xs border-primary/30 hover:bg-primary hover:text-white"

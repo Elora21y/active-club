@@ -51,7 +51,7 @@ const axiosSecure = useAxiosSecure()
     image: courtImage,
     created_at: new Date().toISOString(),
   };
-console.log(newCourt)
+// console.log(newCourt)
   try {
     const res = await axiosSecure.post("/courts", newCourt);
     if (res.data?.insertedId) {
