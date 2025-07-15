@@ -28,6 +28,9 @@ const DashboardLayout = () => {
         <NavLink to="/dashboard/add-court">Add Court</NavLink>
       </li>
       <li>
+        <NavLink to="/dashboard/court">All Courts</NavLink>
+      </li>
+      <li>
          <button
           onClick={() =>
             logOut()
@@ -92,7 +95,7 @@ const DashboardLayout = () => {
         )}
 
         {/* Page content */}
-        <div className='max-w-6xl mx-auto my-5 md:my-8 lg:my-12 px-5 sm:px-8 xl:px-0'>
+        <div className=' mx-auto my-5 md:my-8 lg:my-12 px-5 sm:px-8 '>
           <Outlet />
         </div>
       </div>

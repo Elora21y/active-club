@@ -5,13 +5,24 @@ import './App.css'
 import { RouterProvider } from 'react-router'
 import { router } from './router/Router.jsx'
 import AuthProvider from './context/AuthProvider.jsx'
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+
+AOS.init();
+const queryClient = new QueryClient()
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
       <RouterProvider router={router}>
 
     </RouterProvider>
     </AuthProvider>
+    </QueryClientProvider>
   </StrictMode>,
 )

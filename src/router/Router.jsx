@@ -21,10 +21,6 @@ export const router = createBrowserRouter([
     {
       index : true ,
       Component : Home
-    },
-    {
-      path : '/court',
-      Component : Court
     }
   ]
  },
@@ -50,6 +46,10 @@ export const router = createBrowserRouter([
     {
       path : 'add-court',
       Component : AddCourt
+    },
+    {
+      path : 'court',
+      Component : Court
     }
   ]
  }
