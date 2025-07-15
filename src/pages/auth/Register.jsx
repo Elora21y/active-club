@@ -6,8 +6,9 @@ import useAxios from '../../hooks/useAxios';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import SocialSignIn from './SocialSignIn';
-import axios from 'axios';
+// // import axios from 'axios';
 import image from '../../assets/image-upload-icon.png'
+import UploadImage from '../../shared/UploadImage';
 
 const Register = () => {
     const { createUser, updateUser } = useAuth();
@@ -16,7 +17,7 @@ const Register = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [profilePic, setProfilePic] = useState("");
-  const [profileLoading, setProfileLoading] = useState(false);
+  // const [profileLoading, setProfileLoading] = useState(false);
   const form = location.state?.form || '/'
     console.log(location.state)
   const {
@@ -60,29 +61,29 @@ const Register = () => {
         console.log(error);
       });
   };
-  const handleImgUpload = async (e) => {
-    const img = e.target.files[0];
-    // console.log(img);
-    if (!img) return;
+  // const handleImgUpload = async (e) => {
+  //   const img = e.target.files[0];
+  //   // console.log(img);
+  //   if (!img) return;
 
-    const formData = new FormData();
-    formData.append("image", img);
+  //   const formData = new FormData();
+  //   formData.append("image", img);
 
-    //https://api.imgbb.com/1/upload?expiration=600&key=YOUR_CLIENT_API_KEY
-    const imgUploadUrl = `https://api.imgbb.com/1/upload?key=${
-      import.meta.env.VITE_image_upload_key
-    }`;
-    setProfileLoading(true)
-    try {
-    const res = await axios.post(imgUploadUrl, formData);
-    setProfilePic(res.data.data.url);
-  } catch (error) {
-    console.error("Image upload failed", error);
-    toast.error("Failed to upload image");
-  } finally {
-    setProfileLoading(false); 
-  }
-  };
+  //   //https://api.imgbb.com/1/upload?expiration=600&key=YOUR_CLIENT_API_KEY
+  //   const imgUploadUrl = `https://api.imgbb.com/1/upload?key=${
+  //     import.meta.env.VITE_image_upload_key
+  //   }`;
+  //   setProfileLoading(true)
+  //   try {
+  //   const res = await axios.post(imgUploadUrl, formData);
+  //   setProfilePic(res.data.data.url);
+  // } catch (error) {
+  //   console.error("Image upload failed", error);
+  //   toast.error("Failed to upload image");
+  // } finally {
+  //   setProfileLoading(false); 
+  // }
+  // };
   return (
     <div>
       <h2 className="text-center text-4xl lg:text-5xl font-bold mb-5 text-secondary">
@@ -101,8 +102,16 @@ const Register = () => {
               placeholder="User Name"
               {...register("name", { required: true, minLength: 4 })}
             />
+            
+            {errors.name?.type === "required" && (
+              <p className="text-red-500">Name is required</p>
+            )}
+            {errors.name?.type === "minLength" && (
+              <p className="text-red-500"> Minimum 4 character </p>
+            )}
             {/* photo */}
-            <label className="label" 
+            <UploadImage setProfilePic={setProfilePic} profilePic={profilePic} image={image} w={14}/>
+            {/* <label className="label" 
             onChange={handleImgUpload}
             >
                <div className="flex text-center items-center justify-center py-2 mx-auto border w-full border-[#9ca3af8f] border-dashed rounded-lg min-h-14">
@@ -119,13 +128,7 @@ const Register = () => {
              </div>
               
               <input type="file" className="hidden" />
-            </label>
-            {errors.name?.type === "required" && (
-              <p className="text-red-500">Name is required</p>
-            )}
-            {errors.name?.type === "minLength" && (
-              <p className="text-red-500"> Minimum 4 character </p>
-            )}
+            </label> */}
             {/* email */}
             <label className="label">Email</label>
             <input

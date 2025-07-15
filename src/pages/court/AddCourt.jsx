@@ -1,21 +1,32 @@
-import axios from 'axios';
+// import axios from 'axios';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
+import UploadImage from '../../shared/UploadImage';
+import image from '../../assets/upload-img.png'
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
+
 
 const AddCourt = () => {
     const [courtImage, setCourtImage] = useState("");
-  const [imgLoading, setImgLoading] = useState(false);
-
+const axiosSecure = useAxiosSecure()
   const [selectedSlots, setSelectedSlots] = useState([]);
 
   const availableSlots = [
     "06:00 AM - 07:00 AM",
     "07:00 AM - 08:00 AM",
     "08:00 AM - 09:00 AM",
+    "09:00 AM - 10:00 AM",
+    "10:00 AM - 11:00 AM",
+    "12:00 PM - 01:00 PM",
+    "01:00 PM - 02:00 PM",
+    "02:00 PM - 03:00 PM",
     "04:00 PM - 05:00 PM",
     "05:00 PM - 06:00 PM",
     "06:00 PM - 07:00 PM",
     "07:00 PM - 08:00 PM",
+    "08:00 PM - 09:00 PM",
+    "09:00 PM - 10:00 PM",
   ];
 
   const handleSlotChange = (slot) => {
@@ -26,58 +37,53 @@ const AddCourt = () => {
     );
   };
 
-  const handleImageUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    setImgLoading(true);
-    const formData = new FormData();
-    formData.append("image", file);
-
-    try {
-      const res = await axios.post(
-        `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_key}`,
-        formData
-      );
-      setCourtImage(res.data.data.url);
-    } catch (err) {
-      toast.error("Image upload failed");
-    } finally {
-      setImgLoading(false);
-    }
-  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const courtType = form.courtType.value;
-    const price = form.price.value;
+  e.preventDefault();
+  const form = e.target;
+  const court_type = form.courtType.value;
+  const price = form.price.value;
 
-    const newCourt = {
-      courtType,
-      slotTimes: selectedSlots,
-      pricePerSession: parseInt(price),
-      imageUrl: courtImage,
-    };
-
-    // 🔁 Send to server here
-    console.log(newCourt);
-    toast.success("Court added successfully!");
-    form.reset();
-    setCourtImage("");
-    setSelectedSlots([]);
+  const newCourt = {
+    court_type,
+    slot_times: selectedSlots,
+    price_per_session: parseInt(price),
+    image: courtImage,
+    created_at: new Date().toISOString(),
   };
+console.log(newCourt)
+  try {
+    const res = await axiosSecure.post("/courts", newCourt);
+    if (res.data?.insertedId) {
+      // ✅ Show success modal
+      Swal.fire({
+        title: "Success!",
+        text: "Court added successfully.",
+        icon: "success",
+        confirmButtonText: "OK",
+        confirmButtonColor: "#10b981", // Tailwind green-500
+      });
+
+      form.reset();
+      setCourtImage("");
+      setSelectedSlots([]);
+    }
+  } catch (err) {
+    toast.error(err.response?.data?.error || "Failed to add court");
+  }
+};
+
 
   return (
-    <div className="max-w-xl mx-auto bg-base-100 shadow-md p-6 rounded-xl">
+    <div className="max-w-xl mx-auto ">
       <h2 className="text-2xl font-bold mb-4 text-center">Add New Court</h2>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-5 w-full fieldset bg-base-100 shadow-md p-6 rounded-xl">
         {/* Court Type */}
         <div>
-          <label className="label font-semibold">Court Type</label>
-          <select name="courtType" className="select w-full select-bordered" required>
-            <option disabled selected value="">Select Court Type</option>
+          <label className="label font-semibold mb-3">Court Type</label>
+          <select name="courtType" className="select w-full select-bordered" required defaultValue=''>
+            <option disabled  value="">Select Court Type</option>
             <option>Badminton</option>
             <option>Volleyball</option>
             <option>Tennis</option>
@@ -85,16 +91,15 @@ const AddCourt = () => {
             <option>Squash</option>
             <option>Basketball</option>
             <option>Futsal</option>
+            <option>Hockey</option>
             <option>Cricket Net Practice</option>
-            <option>Yoga Hall</option>
-            <option>Gym Area</option>
           </select>
         </div>
 
         {/* Slot Times */}
         <div>
-          <label className="label font-semibold">Select Slot Times</label>
-          <div className="grid grid-cols-2 gap-2">
+          <label className="label font-semibold mb-3">Select Slot Times</label>
+          <div className="grid sm:grid-cols-2 gap-2 text-xs">
             {availableSlots.map((slot) => (
               <label key={slot} className="flex items-center gap-2">
                 <input
@@ -104,7 +109,7 @@ const AddCourt = () => {
                   onChange={() => handleSlotChange(slot)}
                   className="checkbox checkbox-sm"
                 />
-                <span className="text-sm">{slot}</span>
+                <span>{slot}</span>
               </label>
             ))}
           </div>
@@ -112,7 +117,7 @@ const AddCourt = () => {
 
         {/* Price */}
         <div>
-          <label className="label font-semibold">Price per Session (৳)</label>
+          <label className="label font-semibold mb-3">Price per Session (৳)</label>
           <input
             type="number"
             name="price"
@@ -123,27 +128,8 @@ const AddCourt = () => {
         </div>
 
         {/* Image Upload */}
-        <div>
-          <label className="label font-semibold">Court Image</label>
-          <div className="flex items-center gap-4">
-            {imgLoading ? (
-              <div className="loading loading-spinner text-primary w-12 h-12" />
-            ) : courtImage ? (
-              <img src={courtImage} alt="Court" className="w-16 h-16 rounded object-cover" />
-            ) : (
-              <div className="w-16 h-16 rounded border border-dashed flex items-center justify-center text-gray-400">
-                No Image
-              </div>
-            )}
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageUpload}
-              className="file-input file-input-bordered file-input-sm w-full"
-              required={!courtImage}
-            />
-          </div>
-        </div>
+      
+        <UploadImage setProfilePic={setCourtImage} profilePic={courtImage} image={image} w={20}/>
 
         {/* Submit */}
         <button type="submit" className="btn btn-primary w-full">Add Court</button>
