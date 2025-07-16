@@ -11,6 +11,8 @@ import AddCourt from "../pages/court/AddCourt";
 import PrivateRoute from "../routes/PrivateRoute";
 import Loading from "../shared/Loading";
 import Courts from "../pages/courts/Courts";
+import MyBooking from "../pages/dashboard/user/MyBooking";
+import MyProfile from "../pages/dashboard/user/MyProfile";
 
 
 export const router = createBrowserRouter([
@@ -55,7 +57,19 @@ export const router = createBrowserRouter([
     {
       path : 'court',
       Component : Court
-    }
+    },
+    {
+      path : 'my-profile',
+      Component : MyProfile
+    },
+    {
+      path : 'my-pending-bookings',
+      Component : MyBooking
+    },
+    {
+      path : 'court',
+      Component : Court
+    },
   ]
  }
  

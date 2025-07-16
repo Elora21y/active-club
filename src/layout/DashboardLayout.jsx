@@ -22,7 +22,7 @@ const DashboardLayout = () => {
         <NavLink to="/dashboard/my-profile">My Profile</NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard/bookings">My Bookings</NavLink>
+        <NavLink to="/dashboard/my-pending-bookings">My Bookings</NavLink>
       </li>
       <li>
         <NavLink to="/dashboard/add-court">Add Court</NavLink>
