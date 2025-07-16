@@ -22,7 +22,7 @@ const [selectedSlots, setSelectedSlots] = useState([]);
 
   const handleBookNow = (_id) => {
     if (!user) {
-      return navigate("/login");
+      return navigate("/auth/login");
     }
     document.getElementById(`booking_modal_${_id}`).showModal();
   };

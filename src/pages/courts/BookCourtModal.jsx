@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const BookCourtModal = ({
   user,
@@ -9,6 +11,7 @@ const BookCourtModal = ({
   setBookingDate,
 }) => {
   const [calculatedPrice, setCalculatedPrice] = useState(0);
+  const axiosSecure = useAxiosSecure()
 
   useEffect(() => {
     // Calculate price based on selected slots
@@ -17,24 +20,38 @@ const BookCourtModal = ({
 
   const handleSlotToggle = (slot) => {
     setSelectedSlots((prev) =>
-      prev?.includes(slot)
-        ? prev.filter((s) => s !== slot)
-        : [...prev, slot]
+      prev?.includes(slot) ? prev.filter((s) => s !== slot) : [...prev, slot]
     );
   };
 
-  const handleBooking = (e) => {
+  const handleBooking = async(e) => {
     e.preventDefault();
     const bookingInfo = {
       name: user?.displayName,
       email: user?.email,
       courtId: court._id,
-      slots: selectedSlots, // now sending multiple
-      booking_at: bookingDate,
+      court_type: court.court_type,
+      slot_times: selectedSlots, // multiple slots
+      booking_for: bookingDate,
+      booking_at: new Date().toISOString(),
+      price_per_session: court.price_per_session,
       total_price: calculatedPrice,
+      payments_status : 'unpaid',
+      status : 'pending'
     };
-    console.log("Booking Info:", bookingInfo);
+    // console.log("Booking Info:", bookingInfo);
     // TODO: Send to server...
+     try {
+    const res = await axiosSecure.post('/bookings', bookingInfo);
+    // console.log(res)
+    if (res.data.insertedId) {
+      document.getElementById(`booking_modal_${court._id}`).close();
+      toast.success('Booking request submitted!');
+    }
+  } catch (err) {
+    // console.log(err)
+    toast.error('Booking failed. Try again!');
+  }
   };
 
   return (
