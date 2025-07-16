@@ -95,7 +95,7 @@ const DashboardLayout = () => {
         )}
 
         {/* Page content */}
-        <div className=' mx-auto my-5 md:my-8 lg:my-12 px-5 sm:px-8 '>
+        <div className='max-w-7xl mx-auto my-5 md:my-8 lg:my-12 px-5 sm:px-8 '>
           <Outlet />
         </div>
       </div>

@@ -10,6 +10,7 @@ import Court from "../pages/court/Court";
 import AddCourt from "../pages/court/AddCourt";
 import PrivateRoute from "../routes/PrivateRoute";
 import Loading from "../shared/Loading";
+import Courts from "../pages/courts/Courts";
 
 
 export const router = createBrowserRouter([
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
     {
       index : true ,
       Component : Home
+    },
+    {
+      path : '/courts',
+      Component : Courts
     }
   ]
  },
