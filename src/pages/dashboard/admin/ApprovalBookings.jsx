@@ -14,7 +14,7 @@ const ApprovalBookings = () => {
     },
   });
 
-  const handleAction = async (id, status) => {
+  const handleAction = async (id, status , email) => {
     const confirm = await Swal.fire({
       title: `Are you sure you want to ${status} this booking?`,
       icon: 'warning',
@@ -27,7 +27,7 @@ const ApprovalBookings = () => {
     if (!confirm.isConfirmed) return;
 
     try {
-      const res = await axiosSecure.put(`/bookings/${id}`, { status });
+      const res = await axiosSecure.put(`/bookings/${id}`,{ status, email });
       if (res.status === 200) {
         Swal.fire({
           icon: 'success',
@@ -88,14 +88,14 @@ const ApprovalBookings = () => {
                   <button
                     className="btn btn-success btn-xs tooltip"
                     data-tip="Approve"
-                    onClick={() => handleAction(booking._id, 'approved')}
+                    onClick={() => handleAction(booking._id, 'approved', booking.email)}
                   >
                     <FaCheck />
                   </button>
                   <button
                     className="btn btn-error btn-xs tooltip"
                     data-tip="Reject"
-                    onClick={() => handleAction(booking._id, 'rejected')}
+                    onClick={() => handleAction(booking._id, 'rejected', booking.email)}
                   >
                     <FaTimes />
                   </button>

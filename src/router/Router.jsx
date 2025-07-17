@@ -15,6 +15,9 @@ import MyBooking from "../pages/dashboard/user/MyBooking";
 import MyProfile from "../pages/dashboard/user/MyProfile";
 import ApproveBooking from "../pages/dashboard/member/ApproveBooking";
 import ApprovalBookings from "../pages/dashboard/admin/ApprovalBookings";
+import Payment from "../pages/dashboard/member/Payment";
+import PaymentHistory from "../pages/dashboard/member/PaymentHistory";
+import ConfirmedBookings from "../pages/dashboard/member/ConfirmedBookings";
 
 
 export const router = createBrowserRouter([
@@ -75,6 +78,19 @@ export const router = createBrowserRouter([
     {
       path : 'approval-bookings',
       Component : ApprovalBookings
+    },
+    {
+      path : 'payment/:bookings_id',
+      Component : Payment,
+      // loader : ({params})=>  fetch(`${import.meta.env.VITE_api_url}/bookings/${params.bookings_id}`)
+    },
+    {
+      path : 'payment-history',
+      Component : PaymentHistory
+    },
+    {
+      path : 'confirmed-bookings',
+      Component : ConfirmedBookings
     },
   ]
  }

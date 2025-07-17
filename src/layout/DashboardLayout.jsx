@@ -28,6 +28,12 @@ const DashboardLayout = () => {
         <NavLink to="/dashboard/approve-bookings">Approved Bookings</NavLink>
       </li>
       <li>
+        <NavLink to="/dashboard/payment-history">Payment History</NavLink>
+      </li>
+      <li>
+        <NavLink to="/dashboard/confirmed-bookings">Confirmed Bookings</NavLink>
+      </li>
+      <li>
         <NavLink to="/dashboard/approval-bookings">Pending Bookings</NavLink>
       </li>
       <li>
