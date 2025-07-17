@@ -21,6 +21,7 @@ import ConfirmedBookings from "../pages/dashboard/member/ConfirmedBookings";
 import AllUsers from "../pages/dashboard/admin/AllUsers";
 import ManageMember from "../pages/dashboard/admin/ManageMember";
 import ManageBookings from "../pages/dashboard/admin/ManageBookings";
+import ManageCoupons from "../pages/dashboard/admin/ManageCoupons";
 
 
 export const router = createBrowserRouter([
@@ -69,6 +70,10 @@ export const router = createBrowserRouter([
     {
       path : 'users',
       Component : AllUsers
+    },
+    {
+      path : 'manage-coupons',
+      Component : ManageCoupons
     },
     {
       path : 'manage-members',
