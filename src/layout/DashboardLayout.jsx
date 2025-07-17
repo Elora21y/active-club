@@ -43,6 +43,9 @@ const DashboardLayout = () => {
         <NavLink to="/dashboard/court">All Courts</NavLink>
       </li>
       <li>
+        <NavLink to="/dashboard/manage-members">Manage Members</NavLink>
+      </li>
+      <li>
         <NavLink to="/dashboard/users">All Users</NavLink>
       </li>
       <li>

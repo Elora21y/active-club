@@ -34,6 +34,7 @@ const Register = () => {
 
         //update userInfo in the database
         const userInfo = {
+          name : data.name,
           email: data.email,
           role: "user",
           create_at: new Date().toISOString(),

@@ -19,6 +19,7 @@ import Payment from "../pages/dashboard/member/Payment";
 import PaymentHistory from "../pages/dashboard/member/PaymentHistory";
 import ConfirmedBookings from "../pages/dashboard/member/ConfirmedBookings";
 import AllUsers from "../pages/dashboard/admin/AllUsers";
+import ManageMember from "../pages/dashboard/admin/ManageMember";
 
 
 export const router = createBrowserRouter([
@@ -67,6 +68,10 @@ export const router = createBrowserRouter([
     {
       path : 'users',
       Component : AllUsers
+    },
+    {
+      path : 'manage-members',
+      Component : ManageMember
     },
     {
       path : 'my-profile',
