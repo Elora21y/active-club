@@ -20,8 +20,10 @@ const ConfirmedBookings = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">My Confirmed Bookings</h2>
-      <div className="overflow-x-auto rounded shadow">
+      <h2 className="text-2xl font-bold mb-6 text-center">My Confirmed Bookings</h2>
+     {
+      confirmed.length >0 ?
+       <div className="overflow-x-auto rounded shadow">
         <table className="table table-zebra w-full">
           <thead className="bg-base-200">
             <tr>
@@ -38,13 +40,16 @@ const ConfirmedBookings = () => {
                 <td>{index + 1}</td>
                 <td>{booking.court_type}</td>
                 <td>{booking.slot_times.length}</td>
-                <td>{new Date(booking.booking_at).toLocaleTimeString()}</td>
+                <td>{new Date(booking.booking_for).toLocaleDateString()}</td>
                 <td className="text-success">Paid</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      :
+      <p className="text-center text-gray-500 mt-10">No confirmed bookings found.</p>
+     }
     </div>
   );
 };
