@@ -17,8 +17,8 @@ const Login = () => {
   } = useForm();
   const navigate = useNavigate();
   const location = useLocation();
-  const form = location.state?.form || '/'
-  //   console.log(location.state)
+  const form = location?.state || '/'
+    // console.log(location)
   const onSubmit = (data) => {
     console.log(data);
     const { email, password } = data;

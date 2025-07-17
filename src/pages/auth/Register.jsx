@@ -18,8 +18,8 @@ const Register = () => {
   const location = useLocation();
   const [profilePic, setProfilePic] = useState("");
   // const [profileLoading, setProfileLoading] = useState(false);
-  const form = location.state?.form || '/'
-    console.log(location.state)
+  const form = location?.state || '/'
+    // console.log(location.state)
   const {
     register,
     handleSubmit,
@@ -39,8 +39,8 @@ const Register = () => {
           create_at: new Date().toISOString(),
           last_login: new Date().toISOString(),
         };
-        // const userRes = await axiosInstance.post(`/users`, userInfo);
-        // console.log(userRes.data);
+        const userRes = await axiosInstance.post(`/users`, userInfo);
+        console.log(userRes.data);
 
         // update user profile in firebase
         const updateInfo = {
@@ -49,11 +49,11 @@ const Register = () => {
         };
         updateUser(updateInfo)
           .then(() => {
-            // console.log("profile updated");
-            // if(userRes.data.insertedId){
+            console.log("profile updated");
+            if(userRes.data.insertedId){
               toast.success("Successfully Login");
               navigate(form);
-            // }
+            }
           })
           .catch((err) => console.log(err));
       })

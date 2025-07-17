@@ -7,12 +7,13 @@ const SocialSignIn = () => {
   const { googleLogin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const form = location?.state || '/'
   //   console.log(location.state)
   const handleGoogleLogin = () => {
     googleLogin()
       .then(() => {
         toast.success("Successfully Login");
-        navigate(`${location.state ? location.state : "/"}`);
+        navigate(form)
       })
       .catch((error) => {
         toast.error(error);

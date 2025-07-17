@@ -25,13 +25,19 @@ const DashboardLayout = () => {
         <NavLink to="/dashboard/my-pending-bookings">My Bookings</NavLink>
       </li>
       <li>
+        <NavLink to="/dashboard/approve-bookings">Approved Bookings</NavLink>
+      </li>
+      <li>
+        <NavLink to="/dashboard/approval-bookings">Pending Bookings</NavLink>
+      </li>
+      <li>
         <NavLink to="/dashboard/add-court">Add Court</NavLink>
       </li>
       <li>
         <NavLink to="/dashboard/court">All Courts</NavLink>
       </li>
       <li>
-         <button
+        <button
           onClick={() =>
             logOut()
               .then(() => toast.success("Successfully logged out"))
@@ -50,10 +56,10 @@ const DashboardLayout = () => {
     <div className="flex min-h-screen bg-base-200">
       {/* Sidebar for large screens */}
       <aside className="hidden lg:block w-68 bg-base-100 shadow-lg my-5 ml-2">
-         <div className="border-b border-t-primary pb-3">
-          <NavLogo/>
-         </div>
-        
+        <div className="border-b border-t-primary pb-3">
+          <NavLogo />
+        </div>
+
         <ul className="menu p-4 space-y-3 mt-2">{menuItems}</ul>
       </aside>
 
@@ -61,7 +67,7 @@ const DashboardLayout = () => {
       <div className="flex-1">
         {/* Top navbar for mobile */}
         <div className="lg:hidden flex justify-between items-center px-4 py-3 bg-base-100 shadow">
-          <NavLogo/>
+          <NavLogo />
           <button
             onClick={() => setIsDrawerOpen(true)}
             className="text-2xl focus:outline-none cursor-pointer"
@@ -95,8 +101,10 @@ const DashboardLayout = () => {
         )}
 
         {/* Page content */}
-        <div className='max-w-7xl mx-auto my-5 md:my-8 lg:my-12 px-5 sm:px-8 '>
-          <Outlet />
+        <div className="max-w-7xl mx-auto my-5 md:my-8 lg:my-12 px-5 sm:px-8 overflow-x-auto">
+          <div>
+            <Outlet />
+          </div>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import BookCourtModal from "./BookCourtModal";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 
 const Courts = () => {
@@ -17,12 +17,14 @@ const Courts = () => {
     },
   });
   const navigate = useNavigate();
+   const location = useLocation()
+  //  console.log(location)
 const [selectedSlots, setSelectedSlots] = useState([]);
   const [bookingDate, setBookingDate] = useState("");
 
   const handleBookNow = (_id) => {
     if (!user) {
-      return navigate("/auth/login");
+      return  navigate("/auth/login", { state:  location.pathname  });
     }
     document.getElementById(`booking_modal_${_id}`).showModal();
   };

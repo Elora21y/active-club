@@ -13,6 +13,8 @@ import Loading from "../shared/Loading";
 import Courts from "../pages/courts/Courts";
 import MyBooking from "../pages/dashboard/user/MyBooking";
 import MyProfile from "../pages/dashboard/user/MyProfile";
+import ApproveBooking from "../pages/dashboard/member/ApproveBooking";
+import ApprovalBookings from "../pages/dashboard/admin/ApprovalBookings";
 
 
 export const router = createBrowserRouter([
@@ -67,8 +69,12 @@ export const router = createBrowserRouter([
       Component : MyBooking
     },
     {
-      path : 'court',
-      Component : Court
+      path : 'approve-bookings',
+      Component : ApproveBooking
+    },
+    {
+      path : 'approval-bookings',
+      Component : ApprovalBookings
     },
   ]
  }
