@@ -2,8 +2,8 @@ import React from 'react';
 
 const Loading = () => {
     return (
-        <div>
-            loading
+        <div className="text-center py-10">
+          <span className="loading loading-bars loading-lg text-primary" />
         </div>
     );
 };
