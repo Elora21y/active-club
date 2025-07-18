@@ -17,7 +17,7 @@ Bangladesh`;
     "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d24374.07720270178!2d90.415238!3d23.804093!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c795a0c5336f%3A0x142fb37c5fd1667d!2sNamasheri%20Active%20Club!5e1!3m2!1sen!2sbd!4v1752830665420!5m2!1sen!2sbd";
 
   return (
-    <section className="py-10 " id="location">
+    <section className="py-12 lg:py-16 " id="location">
       <div className="container mx-auto px-4">
         {/* <SectionTitle title={'Location'}/> */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-10">
