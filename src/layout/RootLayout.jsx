@@ -8,11 +8,11 @@ const RootLayout = () => {
     const navigation = useNavigation()
     const isNavigation = Boolean(navigation.location)
     return (
-        <div className='bg-base-200 dark:bg-linear-to-r from-base-200 to-gray-900 min-h-screen relative'>
-            <header  className='sticky backdrop-blur-2xl top-0 z-10 bg-base-200'>
+        <div className='bg-linear-to-r from-[#0e101f] to-[#0e2136] min-h-screen relative'>
+            <header  className='sticky z-100 top-0 '>
             <Navbar/>
             </header>
-            <main className=' min-h-[calc(100vh-313px)]'>
+            <main className=' min-h-[calc(100vh-200px)]'>
                 {
                 isNavigation && <Loading/>
             }

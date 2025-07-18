@@ -7,12 +7,13 @@
 @plugin "daisyui/theme"{
     default : true
  color-scheme: dark;
-    --color-primary: #91C8E4;
-  --color-secondary: #FFFBDE;
+    --color-primary: #427D9D;
+  --color-secondary: #164863;
   --color-secondary-content: #EEEFE0;
-   --color-accent: #5e686d; 
+   --color-accent: #DAC0A3; 
    --color-accent-content: #EEEFE0; 
-    /* --color-base-300 : #FEF3E2 */
+   --color-base-100 :  #031830 ;
+   --color-base-300 : #0A2647;
 
 }
 
@@ -21,6 +22,7 @@ h1,h2,h3,h4,h5,h6 , .mont{
 }
 *{
      font-family: "Poppins", sans-serif;
+     color: #EADBC8;
 }
 .baby{
       font-family: "Bebas Neue", sans-serif;

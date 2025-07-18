@@ -6,6 +6,21 @@ import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
 import { FiLogOut } from "react-icons/fi";
 import NavLogo from "../shared/NavLogo";
+import {
+  FaHome,
+  FaUser,
+  FaClipboardList,
+  FaCheckCircle,
+  FaCreditCard,
+  FaBookmark,
+  FaPlusCircle,
+  FaTable,
+  FaTags,
+  FaBullhorn,
+  FaUsersCog,
+  FaUserFriends,
+} from "react-icons/fa";
+import { MdPendingActions } from "react-icons/md";
 
 const DashboardLayout = () => {
   const { logOut } = useAuth();
@@ -14,49 +29,103 @@ const DashboardLayout = () => {
   const menuItems = (
     <>
       <li>
-        <NavLink to="/dashboard" end>
-          Home
+        <NavLink to="/dashboard" end className="flex items-center gap-2">
+          <FaHome /> Home
         </NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard/my-profile">My Profile</NavLink>
+        <NavLink to="/dashboard/my-profile" className="flex items-center gap-2">
+          <FaUser /> My Profile
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard/my-pending-bookings">My Bookings</NavLink>
+        <NavLink
+          to="/dashboard/my-pending-bookings"
+          className="flex items-center gap-2"
+        >
+          <FaClipboardList /> My Bookings
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard/approve-bookings">Approved Bookings</NavLink>
+        <NavLink
+          to="/dashboard/approve-bookings"
+          className="flex items-center gap-2"
+        >
+          <FaCheckCircle /> Approved Bookings
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard/payment-history">Payment History</NavLink>
+        <NavLink
+          to="/dashboard/payment-history"
+          className="flex items-center gap-2"
+        >
+          <FaCreditCard /> Payment History
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard/confirmed-bookings">Confirmed Bookings</NavLink>
+        <NavLink
+          to="/dashboard/confirmed-bookings"
+          className="flex items-center gap-2"
+        >
+          <FaBookmark /> Confirmed Bookings
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard/approval-bookings">Pending Bookings</NavLink>
+        <NavLink
+          to="/dashboard/approval-bookings"
+          className="flex items-center gap-2"
+        >
+          <MdPendingActions /> Pending Bookings
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard/add-court">Add Court</NavLink>
+        <NavLink to="/dashboard/add-court" className="flex items-center gap-2">
+          <FaPlusCircle /> Add Court
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard/court">All Courts</NavLink>
+        <NavLink to="/dashboard/court" className="flex items-center gap-2">
+          <FaTable /> All Courts
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard/manage-coupons">Manage Coupons</NavLink>
+        <NavLink
+          to="/dashboard/manage-coupons"
+          className="flex items-center gap-2"
+        >
+          <FaTags /> Manage Coupons
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard/announcements">Announcements</NavLink>
+        <NavLink
+          to="/dashboard/announcements"
+          className="flex items-center gap-2"
+        >
+          <FaBullhorn /> Announcements
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard/manage-bookings">Manage Bookings</NavLink>
+        <NavLink
+          to="/dashboard/manage-bookings"
+          className="flex items-center gap-2"
+        >
+          <FaClipboardList /> Manage Bookings
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard/manage-members">Manage Members</NavLink>
+        <NavLink
+          to="/dashboard/manage-members"
+          className="flex items-center gap-2"
+        >
+          <FaUserFriends /> Manage Members
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard/users">All Users</NavLink>
+        <NavLink to="/dashboard/users" className="flex items-center gap-2">
+          <FaUsersCog /> All Users
+        </NavLink>
       </li>
+
       <li>
         <button
           onClick={() =>
@@ -74,9 +143,9 @@ const DashboardLayout = () => {
   );
 
   return (
-    <div className="flex min-h-screen bg-base-200">
+    <div className="flex min-h-screen bg-linear-to-r from-[#0e101f] to-[#0e2136]">
       {/* Sidebar for large screens */}
-      <aside className="hidden lg:block w-68 bg-base-100 shadow-lg my-5 ml-2">
+      <aside className="hidden lg:block w-68 bg-base-300 shadow-lg py-5 ml-2">
         <div className="border-b border-t-primary pb-3">
           <NavLogo />
         </div>
@@ -87,7 +156,7 @@ const DashboardLayout = () => {
       {/* Main content area */}
       <div className="flex-1">
         {/* Top navbar for mobile */}
-        <div className="lg:hidden flex justify-between items-center px-4 py-3 bg-base-100 shadow">
+        <div className="lg:hidden flex justify-between items-center px-4 py-3 bg-base-300 shadow">
           <NavLogo />
           <button
             onClick={() => setIsDrawerOpen(true)}
@@ -104,7 +173,7 @@ const DashboardLayout = () => {
             onClick={() => setIsDrawerOpen(false)}
           >
             <div
-              className="absolute right-0 top-0 h-full w-64 bg-base-100 shadow-xl p-4 transform transition-transform duration-500 translate-x-0"
+              className="absolute right-0 top-0 h-full w-64 bg-base-300 shadow-xl p-4 transform transition-transform duration-500 translate-x-0"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Icon */}

@@ -25,7 +25,7 @@ const ConfirmedBookings = () => {
       confirmed.length >0 ?
        <div className="overflow-x-auto rounded shadow">
         <table className="table table-zebra w-full">
-          <thead className="bg-base-200">
+          <thead className="bg-base-100">
             <tr>
               <th>No.</th>
               <th>Court</th>

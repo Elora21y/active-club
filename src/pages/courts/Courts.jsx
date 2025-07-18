@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import BookCourtModal from "./BookCourtModal";
 import { useLocation, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
+import Loading from "../../shared/Loading";
 
 const Courts = () => {
   const axiosSecure = useAxiosSecure();
@@ -30,10 +31,10 @@ const [selectedSlots, setSelectedSlots] = useState([]);
   };
 
   if (isLoading)
-    return <div className="text-center py-10">Loading courts...</div>;
+    return <Loading/>
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
       <h2 className="text-3xl font-bold text-center mb-8">Available Courts</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

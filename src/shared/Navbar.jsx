@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
-
+import { AiFillHome } from "react-icons/ai";
+import { MdSportsTennis } from "react-icons/md";
+import { MdDashboardCustomize } from "react-icons/md";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import NavLogo from "./NavLogo";
 import useAuth from "../hooks/useAuth";
@@ -8,13 +10,18 @@ import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const [isScrolled, setIsScrolled] = useState(false);
   const links = (
     <>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/">
+          <AiFillHome className="inline-block mr-1" /> Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/courts">Courts</NavLink>
+        <NavLink to="/courts">
+          <MdSportsTennis className="inline-block mr-1" /> Courts
+        </NavLink>
       </li>
     </>
   );
@@ -23,15 +30,35 @@ const Navbar = () => {
       .then(() => toast.success("Successfully log out"))
       .catch((error) => toast.error(error));
   };
+
+  // Detect scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 63) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    //removed the prevent memory leaks
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="bg-transparent shadow right-0 left-0 border-b border-primary/30 absolute">
+    <div
+      className={`fixed w-full transition-all duration-300 ease-in-out  top-0  ${
+        isScrolled ? "bg-base-300 shadow-2xl " : " bg-transparent border-0 pt-2"
+      }`}
+    >
       <div className=" max-w-7xl mx-auto px-2 sm:px-8 xl:px-0 navbar p-0">
         <div className="navbar-start gap-1">
-        <NavLogo />
+          <NavLogo />
         </div>
         <div className="navbar-end gap-1 sm:gap-2 lg:gap-3 ">
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-2 ">{links}</ul>
+            <ul className="menu menu-horizontal font-semibold px-2 space-x-2">{links}</ul>
           </div>
           {user ? (
             <>
@@ -49,17 +76,18 @@ const Navbar = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content menu bg-base-100 rounded-box z-10 w-48 p-2 shadow-sm right-0"
+                  className="dropdown-content menu bg-base-100 rounded-box z-10 w-48 p-2 py-3 shadow-sm right-0 space-y-3"
                 >
+                  
+                    <p className="text-lg text-center font-semibold cursor-none">Hi! {user.displayName}</p>
+                  
                   <li>
-                    <p>Hi! {user.displayName}</p>
+                    <Link to="/dashboard">
+                      <MdDashboardCustomize className="inline-block mr-1" />{" "}
+                      Dashboard
+                    </Link>
                   </li>
                   <li>
-                    {" "}
-                    <Link to="/dashboard">Dashboard</Link>{" "}
-                  </li>
-                  <li>
-                    {" "}
                     <button
                       onClick={handleLogout}
                       className="orange-btn btn btn-xs "
@@ -69,7 +97,6 @@ const Navbar = () => {
                   </li>
                 </ul>
               </div>
-             
             </>
           ) : (
             <>
@@ -79,12 +106,6 @@ const Navbar = () => {
               >
                 Login
               </Link>
-              {/* <Link
-                to="/auth/register"
-                className="btn btn-xs sm:btn-md orange-btn"
-              >
-                Register
-              </Link> */}
             </>
           )}
           {/* menubar */}
@@ -92,13 +113,13 @@ const Navbar = () => {
             <div
               tabIndex={0}
               role="button"
-              className="btn bg-transparent border-0 btn-sm lg:hidden "
+              className="btn bg-transparent border-0 btn-sm lg:hidden  shadow-none"
             >
               <HiOutlineMenuAlt3 size={20} />
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm  dropdown-content bg-base-200 rounded-box z-20 mt-3 w-40 p-2 shadow right-0"
+              className="menu menu-sm  dropdown-content bg-base-100 rounded-box z-20 mt-3 w-40 p-2 shadow right-0 space-y-3"
             >
               {links}
             </ul>

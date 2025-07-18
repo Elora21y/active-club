@@ -108,7 +108,7 @@ const Announcement = () => {
       ) : (
         <div className="overflow-x-auto">
           <table className="table table-zebra w-full text-xs sm:text-sm">
-            <thead className="bg-base-200 text-base-content font-semibold">
+            <thead className="bg-base-100 text-base-content font-semibold">
               <tr>
                 <th>No</th>
                 <th>Title</th>

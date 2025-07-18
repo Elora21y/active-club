@@ -62,7 +62,7 @@ const AllUsers = () => {
       ) : (
         <div className="overflow-x-auto shadow-lg border border-base-300 rounded-lg">
           <table className="table table-zebra text-xs  md:text-sm">
-            <thead className="bg-base-200 text-base font-semibold text-base-content">
+            <thead className="bg-base-100 text-base font-semibold text-base-content">
               <tr>
                 <th>No.</th>
                 <th>Email</th>

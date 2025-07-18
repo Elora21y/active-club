@@ -96,7 +96,7 @@ const ManageCoupons = () => {
       {/* Add Coupon Form */}
       <form
         onSubmit={handleAddCoupon}
-        className="max-w-md mx-auto bg-base-200 p-4 rounded-lg shadow mb-8 space-y-4"
+        className="max-w-md mx-auto bg-base-100 p-4 rounded-lg shadow mb-8 space-y-4"
       >
         <div>
           <label className="label">Coupon Code</label>
@@ -129,7 +129,7 @@ const ManageCoupons = () => {
      
         <div className="overflow-x-auto shadow border border-base-300 rounded-lg">
           <table className="table table-zebra text-sm">
-            <thead className="bg-base-200 text-base font-semibold text-base-content">
+            <thead className="bg-base-100 text-base font-semibold text-base-content">
               <tr>
                 <th>No</th>
                 <th>Code</th>

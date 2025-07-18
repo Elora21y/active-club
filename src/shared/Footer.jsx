@@ -2,7 +2,7 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaGithub } from 'react-
 
 const Footer = () => {
   return (
-    <footer className="bg-[#003366] text-white py-10 px-4">
+    <footer className="bg-base-300 text-white py-10 px-4">
       <div className="max-w-7xl mx-auto grid grid-cols-1  lg:grid-cols-3 gap-8">
         
         {/* Logo & Description */}

@@ -41,7 +41,7 @@ const PaymentHistory = () => {
       ) : (
         <div className="overflow-x-auto rounded-lg shadow-lg border border-base-300  text-xs">
           <table className="table table-zebra ">
-            <thead className="bg-base-200 text-base font-semibold text-base-content">
+            <thead className="bg-base-100 text-base font-semibold text-base-content">
               <tr>
                 <th>No</th>
                 <th>Transaction ID</th>
