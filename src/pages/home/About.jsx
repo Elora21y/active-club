@@ -28,7 +28,7 @@ const About = () => {
      <div className=" md:flex justify-between items-center gap-8 xl:gap-10">
       <img src={about} alt="" className="hidden lg:block max-w-[450px] min-h-[450px] max-h-[400px] object-cover object-center rounded-xl"/>
      <div className="flex flex-col gap-8">
-       <p className="text-4xl lg:text-5xl baby font-medium max-w-xl mx-auto tracking-wide">
+       <p className="text-3xl sm:text-4xl lg:text-5xl baby font-medium max-w-xl mx-auto tracking-wide">
           Discover our story, our purpose, and where we’re headed.
         </p>
        <div className="grid md:grid-cols-2 gap-5">
