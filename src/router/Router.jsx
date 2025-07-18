@@ -22,6 +22,7 @@ import AllUsers from "../pages/dashboard/admin/AllUsers";
 import ManageMember from "../pages/dashboard/admin/ManageMember";
 import ManageBookings from "../pages/dashboard/admin/ManageBookings";
 import ManageCoupons from "../pages/dashboard/admin/ManageCoupons";
+import Announcement from "../pages/dashboard/admin/Announcement";
 
 
 export const router = createBrowserRouter([
@@ -82,6 +83,10 @@ export const router = createBrowserRouter([
     {
       path : 'manage-bookings',
       Component : ManageBookings
+    },
+    {
+      path : 'announcements',
+      Component : Announcement
     },
     {
       path : 'my-profile',

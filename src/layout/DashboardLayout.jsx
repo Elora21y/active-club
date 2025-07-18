@@ -46,6 +46,9 @@ const DashboardLayout = () => {
         <NavLink to="/dashboard/manage-coupons">Manage Coupons</NavLink>
       </li>
       <li>
+        <NavLink to="/dashboard/announcements">Announcements</NavLink>
+      </li>
+      <li>
         <NavLink to="/dashboard/manage-bookings">Manage Bookings</NavLink>
       </li>
       <li>
