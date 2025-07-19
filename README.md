@@ -1,12 +1,68 @@
-# React + Vite
+#  ActiveClub - Sports Club Management Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Live Site:** [https://activeclub.web.app](https://activeclub)
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Overview
 
-## Expanding the ESLint configuration
+**ActiveClub** is a full-stack sports club management web application that allows users to view and book courts, participate in activities, and stay informed through announcements. Admins can manage courts, bookings, users, and important updates—all in one place.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## ✨ Key Features
+
+- 🧾 **Role-Based Access Control (RBAC)**  
+  Different dashboards for `admin`, `member`, and `user`, secured with Firebase Authentication and backend role checks.
+
+- 📅 **Court Booking System**  
+  Logged-in users can view available courts, select date and session, and make bookings easily.
+
+- 💳 **Secure Stripe Payment Integration**  
+  Payments are handled securely via Stripe. Booking gets confirmed only after successful payment.
+
+- 🧍 **User Management**  
+  Admin can promote users to admin role or remove them. Realtime UI reflects role changes.
+
+- 📢 **Announcements System**  
+  Admins can create, edit, or delete announcements visible to all users.
+
+- 🕵️ **Protected Routes with Token Verification**  
+  Backend APIs are secured with Firebase ID token checks, preventing unauthorized access.
+
+- 🌐 **Responsive UI with React, TailwindCSS & DaisyUI**  
+  Fully mobile-friendly UI that adapts smoothly to all screen sizes.
+
+- 🪪 **Google Sign-In**  
+  Users can log in using Google Authentication for a quick and secure experience.
+
+- 📊 **Admin Dashboard Analytics**  
+  Admins see statistics like total bookings, users, revenue, and more.
+
+- 🔄 **Real-time Data Updates**  
+  Uses React Query for efficient data fetching and auto-refetching on mutation success.
+
+---
+
+## ⚙️ Tech Stack
+
+- **Frontend:** React, React Router, TailwindCSS, DaisyUI  
+- **Backend:** Node.js, Express.js, MongoDB  
+- **Auth:** Firebase Authentication  
+- **Payments:** Stripe  
+- **State Management & Fetching:** TanStack Query (React Query)  
+- **Deployment:** Firebase Hosting (Client), Render (Server)
+
+---
+
+
+## ✨ Admin Access
+
+Login using the credentials below to access full admin features:
+
+- **Email:** `elorayasmin20@gmail.com`  
+- **Password:** `Elora123`
+
+---
+
+> Designed and developed with ❤️ by Elora Yasmin.

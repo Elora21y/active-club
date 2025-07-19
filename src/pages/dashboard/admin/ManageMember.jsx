@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { FaUsers, FaSearch, FaTimes } from "react-icons/fa";
 import Loading from "../../../shared/Loading";
-import useAxios from "../../../hooks/useAxios";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const ManageMember = () => {
-  const axiosSecure = useAxios();
+  const axiosSecure = useAxiosSecure();
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
