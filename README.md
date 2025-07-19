@@ -1,6 +1,6 @@
 #  ActiveClub - Sports Club Management Platform
 
-**Live Site:** [https://activeclub.web.app](https://activeclub)
+**Live Site:** [ActiveClub](https://activeclub.)
 
 ---
 
@@ -51,7 +51,7 @@
 - **Auth:** Firebase Authentication  
 - **Payments:** Stripe  
 - **State Management & Fetching:** TanStack Query (React Query)  
-- **Deployment:** Firebase Hosting (Client), Render (Server)
+- **Deployment:** Firebase Hosting (Client), Vercel (Server)
 
 ---
 

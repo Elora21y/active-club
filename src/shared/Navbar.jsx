@@ -49,7 +49,7 @@ const Navbar = () => {
   return (
     <div
       className={`fixed w-full transition-all duration-300 ease-in-out  top-0  ${
-        isScrolled ? "bg-base-300 shadow-2xl " : " bg-transparent border-0 lg:pt-2"
+        isScrolled ? "bg-base-300/70 shadow-2xl " : " bg-transparent border-0 lg:pt-2"
       }`}
     >
       <div className=" max-w-7xl mx-auto px-2 sm:px-8 xl:px-0 navbar p-0">

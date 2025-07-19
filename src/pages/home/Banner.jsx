@@ -31,7 +31,7 @@ const Banner = () => {
     title: "Explore Dynamic Sports Activities",
     subtitle: "From tennis to badminton, discover all the action.",
     buttonText: "Explore Activities",
-    buttonLink: "/activities",
+    buttonLink: "/courts",
   },
   {
     url: club,
@@ -69,7 +69,7 @@ const Banner = () => {
       <div
         className="text-white w-full h-[80vh]  md:h-[90vh] overflow-hidden flex flex-col justify-center items-center text-center px-4 sm:px-8"
         style={{
-          backgroundImage: `linear-gradient(to bottom right, rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url(${slide.url})`,
+          backgroundImage: `linear-gradient(to bottom right, rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url(${slide.url})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -85,7 +85,7 @@ const Banner = () => {
           {slide.buttonText && slide.buttonLink && (
             <Link
               to={slide.buttonLink}
-              className="btn border-0  rounded-full bg-linear-to-r from-secondary to-primary text-white hover:bg-opacity-90 transition"
+              className="btn border-0  rounded-full bg-linear-to-r from-sky-700 to-primary text-white hover:bg-opacity-90 transition"
             >
               <div className="flex items-center gap-1">
                 {slide.buttonText}

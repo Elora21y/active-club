@@ -157,7 +157,7 @@ export const router = createBrowserRouter([
     Component : Unauthorized
   },
   {
-    path : '/*',
+    path : '*',
     Component : Page404
   }
 ]);
