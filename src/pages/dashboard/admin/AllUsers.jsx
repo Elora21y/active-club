@@ -1,33 +1,57 @@
-import { useEffect, useState } from "react";
-import {  FaUsers, FaSearch, FaTimes } from "react-icons/fa";
+import {useState } from "react";
+import { FaUsers, FaSearch, FaTimes } from "react-icons/fa";
 import Loading from "../../../shared/Loading";
-import useAxios from "../../../hooks/useAxios";
+import {
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const AllUsers = () => {
-  const axiosSecure = useAxios();
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-   const [searchQuery, setSearchQuery] = useState("");
+  const axiosSecure = useAxiosSecure();
+  const [searchQuery, setSearchQuery] = useState("");
+  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    const getUsers = async () => {
-      try {
-        const res = await axiosSecure.get("/users");
-        setUsers(res.data);
-      } catch (error) {
-        console.error("Failed to fetch users", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+const { data: users = [], refetch, isLoading } = useQuery({
+  queryKey: ["users"],
+  queryFn: async () => {
+    const res = await axiosSecure.get("/users");
+    return res.data;
+  },
+});
 
-    getUsers();
-  }, [axiosSecure]);
-  
-    const filteredUsers = users.filter((user) =>
-    (user.email?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.role?.toLowerCase().includes(searchQuery.toLowerCase()))
+  const filteredUsers = users.filter(
+    (user) =>
+      user.email?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.role?.toLowerCase().includes(searchQuery.toLowerCase())
   );
+  const { mutate: updateRole } = useMutation({
+    mutationFn: async ({ email, role }) => {
+      return await axiosSecure.patch(`/users/role/${email}`, { role });
+    },
+    onSuccess: (res, { role }) => {
+      if (res?.data?.modifiedCount > 0) {
+        toast.success(
+          role === "admin"
+            ? "User promoted to Admin"
+            : "Admin removed successfully"
+        );
+         refetch();
+        queryClient.invalidateQueries(["users"]);
+      } else {
+        toast.error("No changes made to user role.");
+      }
+    },
+
+    onError: () => {
+      toast.error("Role update failed");
+    },
+  });
+  if (isLoading) {
+  return <Loading/>
+}
 
 
   return (
@@ -36,7 +60,7 @@ const AllUsers = () => {
         <FaUsers /> All Users
       </h2>
 
-       <div className="flex items-center gap-2 mb-6 max-w-sm mx-auto">
+      <div className="flex items-center gap-2 mb-6 max-w-sm mx-auto">
         <div className="relative w-full">
           <input
             type="text"
@@ -55,9 +79,7 @@ const AllUsers = () => {
         </div>
       </div>
 
-      {loading ? (
-        <Loading/>
-      ) : users.length === 0 ? (
+      {users.length === 0 ? (
         <div className="text-center text-gray-400">No users found.</div>
       ) : (
         <div className="overflow-x-auto shadow-lg border border-base-300 rounded-lg">
@@ -67,19 +89,35 @@ const AllUsers = () => {
                 <th>No.</th>
                 <th>Email</th>
                 <th>Role</th>
-                <th>Joined At</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {filteredUsers.map((user, index) => (
                 <tr key={user._id}>
                   <td>{index + 1}</td>
-                  <td >{user.email}</td>
+                  <td>{user.email}</td>
                   <td className="capitalize">{user.role || "user"}</td>
-                  <td >
-                    {user.create_at
-                      ? new Date(user.create_at).toLocaleString()
-                      : "N/A"}
+                  <td>
+                    {user.role === "admin" ? (
+                      <button
+                        className="btn btn-sm btn-error text-white"
+                        onClick={() =>
+                          updateRole({ email: user.email, role: "user" })
+                        }
+                      >
+                        Remove Admin
+                      </button>
+                    ) : (
+                      <button
+                        className="btn btn-sm btn-outline"
+                        onClick={() =>
+                          updateRole({ email: user.email, role: "admin" })
+                        }
+                      >
+                        Make Admin
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))}

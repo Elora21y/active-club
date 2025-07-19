@@ -1,4 +1,3 @@
-
 import { createBrowserRouter } from "react-router";
 import RootLayout from "../layout/RootLayout";
 import AuthLayout from "../layout/AuthLayout";
@@ -23,100 +22,142 @@ import ManageMember from "../pages/dashboard/admin/ManageMember";
 import ManageBookings from "../pages/dashboard/admin/ManageBookings";
 import ManageCoupons from "../pages/dashboard/admin/ManageCoupons";
 import Announcement from "../pages/dashboard/admin/Announcement";
-
+import AdminRoute from "../routes/AdminRoute";
+import Unauthorized from "../pages/error/Unauthorized";
+import Page404 from "../pages/error/Page404";
 
 export const router = createBrowserRouter([
- {
-  path : '/',
-  Component : RootLayout,
-  hydrateFallbackElement : <Loading/>,
-  children : [
-    {
-      index : true ,
-      Component : Home
-    },
-    {
-      path : '/courts',
-      Component : Courts
-    }
-  ]
- },
- {
-  path : '/auth',
-  Component : AuthLayout,
-  children : [
-    {
-      path : 'login' ,
-      Component : Login
-    },
-    {
-      path : 'register',
-      Component : Register,
-    }
-  ]
- },
- {
-  path : '/dashboard',
-  element : <PrivateRoute><DashboardLayout/></PrivateRoute>,
-  hydrateFallbackElement: <Loading/>,
-  children : [
-    {
-      path : 'add-court',
-      Component : AddCourt
-    },
-    {
-      path : 'court',
-      Component : Court
-    },
-    {
-      path : 'users',
-      Component : AllUsers
-    },
-    {
-      path : 'manage-coupons',
-      Component : ManageCoupons
-    },
-    {
-      path : 'manage-members',
-      Component : ManageMember
-    },
-    {
-      path : 'manage-bookings',
-      Component : ManageBookings
-    },
-    {
-      path : 'announcements',
-      Component : Announcement
-    },
-    {
-      path : 'my-profile',
-      Component : MyProfile
-    },
-    {
-      path : 'my-pending-bookings',
-      Component : MyBooking
-    },
-    {
-      path : 'approve-bookings',
-      Component : ApproveBooking
-    },
-    {
-      path : 'approval-bookings',
-      Component : ApprovalBookings
-    },
-    {
-      path : 'payment/:bookings_id',
-      Component : Payment,
-    },
-    {
-      path : 'payment-history',
-      Component : PaymentHistory
-    },
-    {
-      path : 'confirmed-bookings',
-      Component : ConfirmedBookings
-    },
-  ]
- }
- 
+  {
+    path: "/",
+    Component: RootLayout,
+    hydrateFallbackElement: <Loading />,
+    children: [
+      {
+        index: true,
+        Component: Home,
+      },
+      {
+        path: "/courts",
+        Component: Courts,
+      },
+    ],
+  },
+  {
+    path: "/auth",
+    Component: AuthLayout,
+    children: [
+      {
+        path: "login",
+        Component: Login,
+      },
+      {
+        path: "register",
+        Component: Register,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    hydrateFallbackElement: <Loading />,
+    children: [
+      {
+        path: "add-court",
+        // Component : AddCourt
+        element: (
+          <AdminRoute>
+            <AddCourt />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "court",
+        // Component : Court
+        element: (
+          <AdminRoute>
+            <Court />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "users",
+        // Component : AllUsers
+        element: (
+          <AdminRoute>
+            <AllUsers />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manage-coupons",
+        // Component : ManageCoupons,
+        element: (
+          <AdminRoute>
+            <ManageCoupons />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manage-members",
+        // Component : ManageMember
+        element: (
+          <AdminRoute>
+            <ManageMember />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manage-bookings",
+        element: (
+          <AdminRoute>
+            <ManageBookings />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "announcements",
+        Component: Announcement,
+      },
+      {
+        path: "my-profile",
+        Component: MyProfile,
+      },
+      {
+        path: "my-pending-bookings",
+        Component: MyBooking,
+      },
+      {
+        path: "approve-bookings",
+        Component: ApproveBooking,
+      },
+      {
+        path: "approval-bookings",
+        Component: ApprovalBookings,
+      },
+      {
+        path: "payment/:bookings_id",
+        Component: Payment,
+      },
+      {
+        path: "payment-history",
+        Component: PaymentHistory,
+      },
+      {
+        path: "confirmed-bookings",
+        Component: ConfirmedBookings,
+      },
+    ],
+  },
+  {
+    path : '/unauthorized',
+    Component : Unauthorized
+  },
+  {
+    path : '/*',
+    Component : Page404
+  }
 ]);

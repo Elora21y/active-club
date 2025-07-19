@@ -2,13 +2,15 @@ import { useForm } from "react-hook-form";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { useState } from "react";
-import useAxios from "../../../hooks/useAxios";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import useUserRole from "../../../hooks/useUserRole";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Announcement = () => {
-  const axiosSecure = useAxios();
+  const axiosSecure = useAxiosSecure();
   const { register, handleSubmit, reset, setValue } = useForm();
   const [editId, setEditId] = useState(null);
+  const {role} = useUserRole()
 
   // Fetch announcements
   const {
@@ -89,7 +91,9 @@ const Announcement = () => {
     <div className="p-4">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-bold">📢 Announcements</h2>
-        <button
+       {
+        role === 'admin' &&
+         <button
           onClick={() => {
             reset();
             setEditId(null);
@@ -99,6 +103,7 @@ const Announcement = () => {
         >
           + New Announcement
         </button>
+       }
       </div>
 
       {isLoading ? (
@@ -113,7 +118,10 @@ const Announcement = () => {
                 <th>No</th>
                 <th>Title</th>
                 <th>Message</th>
-                <th>Actions</th>
+                {
+                  role === 'admin' &&
+                  <th>Actions</th>
+                }
               </tr>
             </thead>
             <tbody>
@@ -122,7 +130,9 @@ const Announcement = () => {
                   <td>{idx + 1}</td>
                   <td>{announcement.title}</td>
                   <td>{announcement.message}</td>
-                  <td >
+                  {
+                    role === 'admin' &&
+                    <td >
                     <div className="flex gap-2">
                       <button
                         onClick={() => handleEdit(announcement)}
@@ -139,6 +149,7 @@ const Announcement = () => {
                       </button>
                     </div>
                   </td>
+                  }
                 </tr>
               ))}
             </tbody>

@@ -21,10 +21,13 @@ import {
   FaUserFriends,
 } from "react-icons/fa";
 import { MdPendingActions } from "react-icons/md";
+import useUserRole from "../hooks/useUserRole";
 
 const DashboardLayout = () => {
   const { logOut } = useAuth();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const { role, roleLoading } = useUserRole();
+  console.log(role);
 
   const menuItems = (
     <>
@@ -38,64 +41,101 @@ const DashboardLayout = () => {
           <FaUser /> My Profile
         </NavLink>
       </li>
+      {!roleLoading && role !== "admin" && (
       <li>
         <NavLink
           to="/dashboard/my-pending-bookings"
           className="flex items-center gap-2"
         >
-          <FaClipboardList /> My Bookings
+          <FaClipboardList /> My Pending Bookings
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/dashboard/approve-bookings"
-          className="flex items-center gap-2"
-        >
-          <FaCheckCircle /> Approved Bookings
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/dashboard/payment-history"
-          className="flex items-center gap-2"
-        >
-          <FaCreditCard /> Payment History
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/dashboard/confirmed-bookings"
-          className="flex items-center gap-2"
-        >
-          <FaBookmark /> Confirmed Bookings
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/dashboard/approval-bookings"
-          className="flex items-center gap-2"
-        >
-          <MdPendingActions /> Pending Bookings
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/dashboard/add-court" className="flex items-center gap-2">
-          <FaPlusCircle /> Add Court
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/dashboard/court" className="flex items-center gap-2">
-          <FaTable /> All Courts
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/dashboard/manage-coupons"
-          className="flex items-center gap-2"
-        >
-          <FaTags /> Manage Coupons
-        </NavLink>
-      </li>
+      )}
+
+      {/* //member */}
+      {!roleLoading && role === "member" && (
+        <>
+          <li>
+            <NavLink
+              to="/dashboard/approve-bookings"
+              className="flex items-center gap-2"
+            >
+              <FaCheckCircle /> Approved Bookings
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/confirmed-bookings"
+              className="flex items-center gap-2"
+            >
+              <FaBookmark /> Confirmed Bookings
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/payment-history"
+              className="flex items-center gap-2"
+            >
+              <FaCreditCard /> Payment History
+            </NavLink>
+          </li>
+        </>
+      )}
+      {/* admin */}
+      {!roleLoading && role === "admin" && (
+        <>
+          <li>
+            <NavLink
+              to="/dashboard/approval-bookings"
+              className="flex items-center gap-2"
+            >
+              <MdPendingActions /> Pending Bookings
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/add-court"
+              className="flex items-center gap-2"
+            >
+              <FaPlusCircle /> Add Court
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/court" className="flex items-center gap-2">
+              <FaTable /> All Courts
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/manage-coupons"
+              className="flex items-center gap-2"
+            >
+              <FaTags /> Manage Coupons
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/manage-bookings"
+              className="flex items-center gap-2"
+            >
+              <FaClipboardList /> Manage Bookings
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/manage-members"
+              className="flex items-center gap-2"
+            >
+              <FaUserFriends /> Manage Members
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/users" className="flex items-center gap-2">
+              <FaUsersCog /> All Users
+            </NavLink>
+          </li>
+        </>
+      )}
       <li>
         <NavLink
           to="/dashboard/announcements"
@@ -104,28 +144,6 @@ const DashboardLayout = () => {
           <FaBullhorn /> Announcements
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/dashboard/manage-bookings"
-          className="flex items-center gap-2"
-        >
-          <FaClipboardList /> Manage Bookings
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/dashboard/manage-members"
-          className="flex items-center gap-2"
-        >
-          <FaUserFriends /> Manage Members
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/dashboard/users" className="flex items-center gap-2">
-          <FaUsersCog /> All Users
-        </NavLink>
-      </li>
-
       <li>
         <button
           onClick={() =>

@@ -1,10 +1,11 @@
 import React from "react";
 import { FaUserCircle, FaEnvelope, FaCalendarAlt } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
+import useUserRole from "../../../hooks/useUserRole";
 
 const MyProfile = () => {
   const { user } = useAuth();
-
+const {role} = useUserRole()
   if (!user) {
     return (
       <div className="flex justify-center items-center min-h-[300px] text-lg font-semibold">
@@ -45,7 +46,7 @@ const MyProfile = () => {
           </p>
 
           <div className="badge badge-secondary badge-outline px-4 py-2 mt-2">
-            Role: <span className="ml-1 font-semibold capitalize">User</span>
+            Role: <span className="ml-1 font-semibold capitalize">{role}</span>
           </div>
         </div>
       </div>

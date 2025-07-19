@@ -67,9 +67,9 @@ const Banner = () => {
   {slides.map((slide, index) => (
     <SwiperSlide key={index}>
       <div
-        className="text-white w-full h-[90vh] overflow-hidden flex flex-col justify-center items-center text-center px-4 sm:px-8"
+        className="text-white w-full h-[80vh]  md:h-[90vh] overflow-hidden flex flex-col justify-center items-center text-center px-4 sm:px-8"
         style={{
-          backgroundImage: `linear-gradient(to bottom right, rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url(${slide.url})`,
+          backgroundImage: `linear-gradient(to bottom right, rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url(${slide.url})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
