@@ -1,6 +1,6 @@
 #  ActiveClub - Sports Club Management Platform
 
-**Live Site:** [ActiveClub](https://activeclub.)
+**Live Site:** [ActiveClub](https://active-club-cb1de.web.app)
 
 ---
 

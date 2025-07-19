@@ -49,7 +49,6 @@ const Banner = () => {
   },
 ];
 
-
   return (
     <>
       {/* slider */}
@@ -69,13 +68,13 @@ const Banner = () => {
       <div
         className="text-white w-full h-[80vh]  md:h-[90vh] overflow-hidden flex flex-col justify-center items-center text-center px-4 sm:px-8"
         style={{
-          backgroundImage: `linear-gradient(to bottom right, rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url(${slide.url})`,
+          backgroundImage: `linear-gradient(to bottom right, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${slide.url})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
         <div className="max-w-2xl mx-auto space-y-4 text-sm sm:text-base">
-          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
+          <h3 className=" baby text-3xl sm:text-4xl lg:text-4xl xl:text-6xl font-medium md:font-semibold md:tracking-wider">
             {slide.title}
           </h3>
             <p>

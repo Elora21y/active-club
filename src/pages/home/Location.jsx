@@ -23,7 +23,7 @@ Bangladesh`;
         <div className="flex flex-col md:flex-row items-center justify-between gap-10">
             {/* //content */}
           <div className="text-center md:text-left ">
-            <h2 className="text-3xl md:text-4xl font-bold  mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-wider baby mb-6">
               <FaMapMarkerAlt className="inline-block mr-2 text-primary" />
               Our Location
             </h2>
