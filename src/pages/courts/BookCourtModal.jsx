@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import useAxios from "../../hooks/useAxios";
 
 const BookCourtModal = ({
   user,
@@ -11,7 +11,7 @@ const BookCourtModal = ({
   setBookingDate,
 }) => {
   const [calculatedPrice, setCalculatedPrice] = useState(0);
-  const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxios()
 
   useEffect(() => {
     // Calculate price based on selected slots

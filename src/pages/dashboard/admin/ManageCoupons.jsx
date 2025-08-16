@@ -3,10 +3,10 @@ import { toast } from "react-hot-toast";
 import { FaTrash, FaEdit, FaGift } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-import useAxios from "../../../hooks/useAxios";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const ManageCoupons = () => {
-  const axiosSecure = useAxios();
+  const axiosSecure = useAxiosSecure();
 
   const [editingCoupon, setEditingCoupon] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);

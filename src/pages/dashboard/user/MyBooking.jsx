@@ -58,7 +58,7 @@ const MyBooking = () => {
                     {booking.court_type}
                   </h3>
                   <span
-                      className={`badge badge-sm ${
+                      className={` badge badge-sm ${
                         booking.status === "pending"
                           ? "badge-warning"
                           : booking.status === "confirmed"

@@ -163,8 +163,8 @@ const DashboardLayout = () => {
   return (
     <div className="flex min-h-screen bg-linear-to-r from-[#0e101f] to-[#0e2136]">
       {/* Sidebar for large screens */}
-      <aside className="hidden lg:block w-68 bg-base-300 shadow-lg py-5 ml-2">
-        <div className="border-b border-t-primary pb-3">
+      <aside className="hidden lg:block fixed top-0 left-0 h-screen w-64 bg-base-300 shadow-lg py-5 z-40 overflow-y-auto">
+        <div className="border-b border-t-primary pb-3 pl-2">
           <NavLogo />
         </div>
 
@@ -172,7 +172,7 @@ const DashboardLayout = () => {
       </aside>
 
       {/* Main content area */}
-      <div className="flex-1">
+      <div className="flex-1 lg:ml-64">
         {/* Top navbar for mobile */}
         <div className="lg:hidden flex justify-between items-center px-4 py-3 bg-base-300 shadow">
           <NavLogo />

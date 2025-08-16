@@ -20,7 +20,7 @@ const PaymentForm = ({ booking }) => {
   const totalPrice = booking?.total_price - (booking?.total_price * discount/100 || 0);
 
   const handleCouponApply = () => {
-    if (couponCode === "ACTIVE10") {
+    if (couponCode === "SPORT10") {
       setDiscount(10);
       toast.success("Coupon applied! for 10% Discount");
     } else {

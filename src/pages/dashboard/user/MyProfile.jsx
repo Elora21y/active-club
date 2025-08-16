@@ -2,22 +2,19 @@ import React from "react";
 import { FaUserCircle, FaEnvelope, FaCalendarAlt } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
 import useUserRole from "../../../hooks/useUserRole";
+import Loading from "../../../shared/Loading";
+import Status from "../admin/Status";
 
 const MyProfile = () => {
   const { user } = useAuth();
 const {role} = useUserRole()
-  if (!user) {
-    return (
-      <div className="flex justify-center items-center min-h-[300px] text-lg font-semibold">
-        Loading profile...
-      </div>
-    );
-  }
+  if (!user ) return <Loading/> 
 
   const { displayName, email, photoURL, metadata } = user;
 
   return (
-    <div className="max-w-2xl mx-auto my-10 p-6 sm:p-8 bg-base-100 shadow-xl rounded-2xl border border-primary/10">
+   <div className="">
+     <div className="max-w-2xl mx-auto my-10 p-6 sm:p-8 bg-base-100 shadow-xl rounded-2xl border border-primary/40">
       <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
         <div className="avatar">
           <div className="w-28 sm:w-32 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
@@ -51,6 +48,11 @@ const {role} = useUserRole()
         </div>
       </div>
     </div>
+    {
+      role === 'admin' &&
+      <Status/>
+    }
+   </div>
   );
 };
 

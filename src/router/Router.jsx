@@ -25,6 +25,7 @@ import Announcement from "../pages/dashboard/admin/Announcement";
 import AdminRoute from "../routes/AdminRoute";
 import Unauthorized from "../pages/error/Unauthorized";
 import Page404 from "../pages/error/Page404";
+import DashHome from "../pages/dashboard/DashboardHome/DashHome";
 
 export const router = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
     ),
     hydrateFallbackElement: <Loading />,
     children: [
+      {
+        index: true,
+        Component: DashHome,
+      },
       {
         path: "add-court",
         // Component : AddCourt
@@ -153,11 +158,11 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path : '/unauthorized',
-    Component : Unauthorized
+    path: "/unauthorized",
+    Component: Unauthorized,
   },
   {
-    path : '*',
-    Component : Page404
-  }
+    path: "*",
+    Component: Page404,
+  },
 ]);

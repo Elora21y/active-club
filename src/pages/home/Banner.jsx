@@ -74,7 +74,7 @@ const Banner = () => {
         }}
       >
         <div className="max-w-2xl mx-auto space-y-4 text-sm sm:text-base">
-          <h3 className=" baby text-3xl sm:text-4xl lg:text-4xl xl:text-6xl font-medium md:font-semibold md:tracking-wider">
+          <h3 className=" baby text-3xl sm:text-4xl lg:text-4xl xl:text-6xl font-medium md:font-semibold  md:tracking-widest">
             {slide.title}
           </h3>
             <p>

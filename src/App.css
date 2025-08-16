@@ -33,9 +33,6 @@ form > input {
   background-color: transparent;
   border: 1px solid #9ca3af62;
 }
-[data-theme="dark"] form > input {
-  background-color: rgba(41, 40, 40, 0.37);
-}
 
 form input::placeholder {
   /* color: #9ca3afa8; */
@@ -49,6 +46,10 @@ form input::placeholder {
 }
 .orange-btn:hover {
   background-color: #3f80a3;
+}
+
+.social>a:hover{
+color: #54addd;
 }
 
 form label {
