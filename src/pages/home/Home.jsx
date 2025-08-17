@@ -5,6 +5,7 @@ import Location from './Location';
 import Promotions from './Promotions';
 import RecentCourts from './CourtCard';
 import ReviewSection from './ReviewSection';
+import Newsletter from './Newsletter';
 
 const Home = () => {
     return (
@@ -18,6 +19,7 @@ const Home = () => {
             <Location/>
             <Promotions/>
             <ReviewSection/>
+            <Newsletter/>
         </div>
         </>
     );
