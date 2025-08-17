@@ -51,7 +51,7 @@ const Promotions = () => {
           {promotions.map((promo, index) => (
             <div
               key={index}
-              className="bg-base-100 rounded-full shadow-md p-6 flex justify-between items-start"
+              className="bg-[#0F3460] rounded-full shadow-md p-6 flex justify-between items-start"
             >
               {/* Left Content */}
               <div>

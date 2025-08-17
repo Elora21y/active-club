@@ -35,7 +35,7 @@ const About = () => {
         {aboutData.map((item, index) => (
           <div
             key={index}
-            className="bg-base-100 p-6 rounded-xl shadow-primary transition-all hover:shadow-md duration-300"
+            className="bg-base-300 p-6 rounded-xl shadow-primary transition-all hover:shadow-md duration-300"
           >
             {item.icon}
             <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
