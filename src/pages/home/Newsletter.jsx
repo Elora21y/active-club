@@ -14,7 +14,7 @@ const Newsletter = () => {
 
   return (
     <section
-      className="relative bg-cover bg-center py-30 bg-no-repeat "
+      className="mt-30 relative bg-cover bg-center py-30 bg-no-repeat "
       style={{ backgroundImage: `linear-gradient(to right, #427D9D10, #144272),url(${bgImage})` }}
     >
         {/* <img src={bgImage} alt="" /> */}

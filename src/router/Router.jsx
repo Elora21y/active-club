@@ -26,6 +26,8 @@ import AdminRoute from "../routes/AdminRoute";
 import Unauthorized from "../pages/error/Unauthorized";
 import Page404 from "../pages/error/Page404";
 import DashHome from "../pages/dashboard/DashboardHome/DashHome";
+import OurTeam from "../pages/OurTeam/OurTeam";
+import Blog from "../pages/Blog/Blog";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +42,14 @@ export const router = createBrowserRouter([
       {
         path: "/courts",
         Component: Courts,
+      },
+      {
+        path: "/our-team",
+        Component: OurTeam,
+      },
+      {
+        path: "/blog",
+        Component: Blog,
       },
     ],
   },

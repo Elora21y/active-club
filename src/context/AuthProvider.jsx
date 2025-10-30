@@ -16,6 +16,18 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const provider = new GoogleAuthProvider();
   const [loading, setLoading] = useState(true);
+  // const [theme, setTheme] = useState(
+  //   localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+  // );
+
+  // const handleToggle = (e) => {
+  //   setTheme(e.target.checked ? "dark" : "light");
+  // };
+
+  // useEffect(() => {
+  //   localStorage.setItem("theme", theme);
+  //   document.querySelector("html").setAttribute("data-theme", theme);
+  // }, [theme]);
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -37,7 +49,7 @@ const AuthProvider = ({ children }) => {
   }, []);
   // console.log(user);
   const updateUser = (updateInfo) => {
-  return  updateProfile(auth.currentUser, updateInfo);
+    return updateProfile(auth.currentUser, updateInfo);
   };
   const googleLogin = () => {
     setLoading(true);
@@ -56,6 +68,8 @@ const AuthProvider = ({ children }) => {
     googleLogin,
     loading,
     updateUser,
+    // handleToggle,
+    // theme,
   };
   return (
     <div>

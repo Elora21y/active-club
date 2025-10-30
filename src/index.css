@@ -6,8 +6,8 @@
 
 @plugin "daisyui/theme"{
     default : true
- color-scheme: dark;
-    --color-primary: #427D9D;
+    color-scheme: dark;
+    --color-primary: #7AB2D3;
   --color-secondary: #164863;
   --color-secondary-content: #EEEFE0;
    --color-accent: #DAC0A3; 

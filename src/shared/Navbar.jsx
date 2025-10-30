@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { AiFillHome } from "react-icons/ai";
-import { MdSportsTennis } from "react-icons/md";
+import { MdArticle, MdGroups, MdSportsTennis } from "react-icons/md";
 import { MdDashboardCustomize } from "react-icons/md";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import NavLogo from "./NavLogo";
@@ -9,7 +9,7 @@ import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
-  const { user, logOut } = useAuth();
+  const { user, logOut} = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
   const links = (
     <>
@@ -21,6 +21,16 @@ const Navbar = () => {
       <li>
         <NavLink to="/courts">
           <MdSportsTennis className="inline-block mr-1" /> Courts
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/our-team">
+          <MdGroups  className="inline-block mr-1" /> Team
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/blog">
+          <MdArticle className="inline-block mr-1" /> Blog
         </NavLink>
       </li>
     </>
@@ -108,6 +118,9 @@ const Navbar = () => {
               </Link>
             </>
           )}
+          
+        
+
           {/* menubar */}
           <div className="dropdown">
             <div
