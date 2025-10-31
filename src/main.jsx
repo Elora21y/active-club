@@ -12,7 +12,11 @@ import {
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
 
-AOS.init();
+AOS.init({
+  duration : 1000,
+  once : false,
+  mirror : true
+});
 const queryClient = new QueryClient()
 
 createRoot(document.getElementById('root')).render(

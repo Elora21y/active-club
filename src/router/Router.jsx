@@ -28,6 +28,7 @@ import Page404 from "../pages/error/Page404";
 import DashHome from "../pages/dashboard/DashboardHome/DashHome";
 import OurTeam from "../pages/OurTeam/OurTeam";
 import Blog from "../pages/Blog/Blog";
+import FeedbackForm from "../pages/feedback/FeedbackForm";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
       {
         path: "/blog",
         Component: Blog,
+      },
+      {
+        path: "/give-feedback",
+        Component: FeedbackForm,
       },
     ],
   },

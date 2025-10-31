@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { AiFillHome } from "react-icons/ai";
-import { MdArticle, MdGroups, MdSportsTennis } from "react-icons/md";
+import { MdArticle, MdGroups, MdOutlineFeedback, MdSportsTennis } from "react-icons/md";
 import { MdDashboardCustomize } from "react-icons/md";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import NavLogo from "./NavLogo";
@@ -31,6 +31,11 @@ const Navbar = () => {
       <li>
         <NavLink to="/blog">
           <MdArticle className="inline-block mr-1" /> Blog
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/give-feedback">
+          <MdOutlineFeedback className="inline-block mr-1" />Feedback
         </NavLink>
       </li>
     </>
