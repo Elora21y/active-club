@@ -32,7 +32,8 @@ const Newsletter = () => {
         <div className="w-full md:w-8/12 lg:w-5/8 xl:w-1/2 text-white space-y-4 xl:space-y-7">
           <h2 className="text-4xl md:text-[40px] xl:text-5xl font-bold"
           data-aos='fade-down' 
-     data-aos-duration="600"
+          data-aos-duration='1000'
+     data-aos-delay="180"
           >Subscribe to Our Newsletter</h2>
           <p className="lg:text-lg"
           data-aos="fade-up"

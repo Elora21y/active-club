@@ -7,6 +7,7 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import NavLogo from "./NavLogo";
 import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
+import {motion} from 'framer-motion'
 
 const Navbar = () => {
   const { user, logOut} = useAuth();
@@ -49,7 +50,7 @@ const Navbar = () => {
   // Detect scroll
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 63) {
+      if (window.scrollY > 80) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -63,22 +64,27 @@ const Navbar = () => {
 
   return (
     <div
-      className={`fixed w-full transition-all duration-300 ease-in-out  top-0  ${
-        isScrolled ? "bg-base-300 shadow-2xl " : " bg-transparent border-0 lg:pt-2"
+      className={`fixed w-full transition-all duration-300 ease-in-out  top-0   ${
+        isScrolled ? "bg-base-300/85 shadow-2xl backdrop-blur-2xl" : " bg-transparent border-0 lg:pt-2"
       }`}
     >
-      <div className=" max-w-7xl mx-auto px-2 sm:px-8 xl:px-0 navbar p-0">
-        <div className="navbar-start gap-1">
+      <div className=" max-w-7xl mx-auto px-4 sm:px-6 xl:px-0 navbar p-0">
+        <motion.div
+        initial={{opacity:0 , x:-20}}
+        whileInView={{opacity:1 , x:0}}
+        transition={{duration:0.5, delay : 0.2}}
+        animate={{opacity:1 , x:0}}
+         className="navbar-start gap-1">
           <NavLogo />
-        </div>
-        <div className="navbar-end gap-1 sm:gap-2 lg:gap-3 ">
+        </motion.div>
+        <div className="navbar-end gap-2 lg:gap-3 ">
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal font-semibold px-2 space-x-2">{links}</ul>
+            <motion.ul className="menu menu-horizontal font-semibold px-2 space-x-2">{links}</motion.ul>
           </div>
           {user ? (
             <>
-              <div className="dropdown ">
-                <div tabIndex={0} role="button">
+              <div className="dropdown " >
+                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                   <img
                     src={
                       user?.photoURL
@@ -86,7 +92,7 @@ const Navbar = () => {
                         : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_htyN2AsYGqluVNNRR2AIXtpLph4pk608Uw&s"
                     }
                     alt="Profile Pic"
-                    className="w-8 h-8 sm:w-10 sm:h-10  md:w-12 md:h-12 rounded-full object-cover cursor-pointer "
+                    className="w-8 h-8 sm:w-10 sm:h-10  md:w-12 md:h-12  rounded-full ring-2 ring-primary ring-offset-2 ring-offset-base-100"
                   />
                 </div>
                 <ul
@@ -136,6 +142,7 @@ const Navbar = () => {
               <HiOutlineMenuAlt3 size={20} />
             </div>
             <ul
+              data-aos="fade-down-left"
               tabIndex={0}
               className="menu menu-sm  dropdown-content bg-base-100 rounded-box z-20 mt-3 w-40 p-2 shadow right-0 space-y-3"
             >
