@@ -5,6 +5,7 @@ import {
   FaClock,
 } from "react-icons/fa";
 import SectionTitle from "../../shared/SectionTitle";
+import {motion} from 'framer-motion'
 
 const Location = () => {
   const clubName = "Active Club";
@@ -22,8 +23,14 @@ Bangladesh`;
         {/* <SectionTitle title={'Location'}/> */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-10">
             {/* //content */}
-          <div className="text-center md:text-left ">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-wider baby mb-6">
+          <motion.div
+            initial={{ opacity: 0.2, x: -80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ amount: 0.2 }}
+            transition={{ duration: 0.4 }}
+            className="text-center md:text-left"
+            data-aos="fade-right" >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-wider baby mb-6  text-shadow-[2px_2px_10px_rgb(0_0_0/0.10)] text-shadow-primary/80">
               <FaMapMarkerAlt className="inline-block mr-2 text-primary" />
               Our Location
             </h2>
@@ -52,9 +59,10 @@ Bangladesh`;
               <FaDirections />
               View in Google Maps
             </a>
-          </div>
+          </motion.div>
           {/* Google Map Embed */}
-          <div className="md:w-1/2 lg:w-3/5 h-90 lg:h-[400px] rounded-xl overflow-hidden mb-6 shadow-lg ">
+          <div className="md:w-1/2 lg:w-3/5 h-90 lg:h-[400px] rounded-xl overflow-hidden mb-6 shadow-lg "
+          data-aos="fade-left">
             <iframe
               src={embedUrl}
               className="w-full h-full border-0"
