@@ -12,7 +12,7 @@ const Home = () => {
         <>
         <div className='max-w-[2700px] mx-auto'>
             <Banner/>
-        <div className='max-w-6xl mx-auto my-20 lg:my-26 xl:my-36 space-y-16 lg:space-y-26 xl:space-y-32 px-5 sm:px-8 xl:px-0 text-xs sm:text-sm'>
+        <div className='max-w-6xl mx-auto my-26 xl:my-36 space-y-26 xl:space-y-32 px-5 sm:px-8 xl:px-0 text-xs sm:text-sm'>
             <About/>
             <RecentCourts/>
             <Location/>
