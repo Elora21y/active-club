@@ -98,7 +98,7 @@ const slides = [
                         ease: [0.25, 0.46, 0.45, 0.94],
                         delay: 0.2 
                       }}
-                      className="baby text-[34px] sm:text-4xl md:text-5xl xl:text-6xl font-medium  md:font-semibold tracking-wide md:tracking-wider"
+                      className="baby text-shadow-[2px_2px_8px_rgb(0_0_0/0.15)] text-shadow-primary/80 text-[34px] sm:text-4xl md:text-5xl xl:text-6xl font-medium  md:font-semibold tracking-wide md:tracking-wider"
                     >
                       {slide.title}
                     </motion.h3>
