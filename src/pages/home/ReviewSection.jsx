@@ -87,7 +87,7 @@ const ReviewSection = () => {
      {/* Swiper Container */}
       <div
         data-aos="fade-up"
-        data-aos-delay="300"
+        data-aos-delay="200"
       >
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}

@@ -8,9 +8,9 @@ import { motion } from "framer-motion";
 const CourtCard = ({ court , index}) => {
   return (
     <motion.div 
-    initial={{y: 30 , opacity : 0.2}}
+    initial={{y: 60 , opacity : 0.2}}
     whileInView={{y: 0 , opacity : 1}}
-    transition={{duration : 0.5 , delay : 0.1* index}}
+    transition={{duration : 0.5 , delay : 0.15* index}}
     viewport={{amount : 0.4 }}
     className="rounded-bl-3xl rounded-tr-3xl w-full max-w-sm group relative overflow-hidden">
       {/* Image */}
