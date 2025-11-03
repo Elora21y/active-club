@@ -21,7 +21,7 @@ const Newsletter = () => {
 
   return (
     <section
-      className="my-24 mt-30 md:my-30 relative bg-cover bg-center py-24 xl:py-34 bg-no-repeat w-full"
+      className="my-24 mt-30 md:my-30 relative bg-cover bg-center py-24 xl:py-28 bg-no-repeat w-full"
       style={{ backgroundImage: `linear-gradient(to right, #00000040, #144272),url(${bgImage})` }}
     >
         {/* <img src={bgImage} alt="" /> */}

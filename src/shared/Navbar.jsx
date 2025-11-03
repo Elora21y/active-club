@@ -70,16 +70,16 @@ const Navbar = () => {
     >
       <div className=" max-w-7xl mx-auto px-4 sm:px-6 xl:px-0 navbar p-0">
         <motion.div
-        initial={{opacity:0 , x:-20}}
+        initial={{opacity:0 , x:-60}}
         whileInView={{opacity:1 , x:0}}
-        transition={{duration:0.5, delay : 0.2}}
+        transition={{duration:0.6, delay : 0.2}}
         animate={{opacity:1 , x:0}}
          className="navbar-start gap-1">
           <NavLogo />
         </motion.div>
         <div className="navbar-end gap-2 lg:gap-3 ">
           <div className="navbar-center hidden lg:flex">
-            <motion.ul className="menu menu-horizontal font-semibold px-2 space-x-2">{links}</motion.ul>
+            <ul data-aos="fade-down" className="menu menu-horizontal font-semibold px-2 space-x-2">{links}</ul>
           </div>
           {user ? (
             <>
@@ -121,11 +121,17 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <Link
+              <Link 
+              
                 to="/auth/login"
-                className="btn btn-xs sm:btn-md hover:text-white hover:bg-primary text-primary border border-primary bg-transparent "
               >
-                Login
+                <motion.div 
+                initial={{scale : 0.7 , opacity : 0.1}}
+                whileInView={{scale : 1 , opacity : 1}}
+                transition={{duration : 0.5 , delay : 0.2}}
+                className="btn btn-xs sm:btn-md hover:text-white hover:bg-primary text-primary border border-primary bg-transparent ">
+                  Login
+                </motion.div>
               </Link>
             </>
           )}
@@ -142,9 +148,9 @@ const Navbar = () => {
               <HiOutlineMenuAlt3 size={20} />
             </div>
             <ul
-              data-aos="fade-down-left"
+              
               tabIndex={0}
-              className="menu menu-sm  dropdown-content bg-base-100 rounded-box z-20 mt-3 w-40 p-2 shadow right-0 space-y-3"
+              className="menu menu-sm  dropdown-content bg-base-100 rounded-box z-20 mt-3 w-40 p-2 pr-6 shadow right-0 space-y-3"
             >
               {links}
             </ul>

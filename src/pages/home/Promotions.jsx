@@ -56,6 +56,7 @@ const Promotions = () => {
         repeatDelay: 4,
         ease: "easeInOut",
       }}
+      viewport={{amount : 0.1}}
       className="absolute inset-0 bg-gradient-to-br from-transparent via-primary/20 to-transparent w-[200%] h-[200%] -rotate-12 pointer-events-none"
       style={{
         transform: 'translateX(-150%) translateY(-150%) rotate(-12deg)',
