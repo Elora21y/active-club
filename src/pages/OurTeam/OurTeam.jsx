@@ -82,7 +82,7 @@ export default function OurTeam() {
     <div className="">
          {/* <img src={team} alt="" className="max-h-screen w-full object-cover object-center" /> */}
     </div>
-     <div className="min-h-screen bg-base-100 py-16 md:py-20 lg:py-26 xl:py-30 px-4 sm:px-6 lg:px-8">
+     <div className="min-h-screen  py-16 md:py-20 lg:py-26 xl:py-30 px-4 sm:px-6 lg:px-8">
        
       <div className="max-w-7xl mx-auto">
         {/* header */}

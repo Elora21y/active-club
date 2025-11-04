@@ -13,7 +13,7 @@ export default function Blog() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-base-100 py-16 md:py-20 lg:py-26 xl:py-30 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen  py-16 md:py-20 lg:py-26 xl:py-30 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* হেডার */}
         <div className="text-center mb-16" data-aos="fade-down">
