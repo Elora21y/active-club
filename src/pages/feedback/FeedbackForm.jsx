@@ -334,8 +334,8 @@ import React from 'react';
 
 const FeedbackForm = () => {
   return (
-    <div>
-      
+    <div className='flex flex-col justify-center items-center min-h-[500px]'>
+      <h3 className='text-lg'>Processing...</h3>
     </div>
   );
 };
