@@ -7,6 +7,8 @@ import Loading from "../../shared/Loading";
 import useAxios from "../../hooks/useAxios";
 import SectionTitle from "../../shared/SectionTitle";
 import { FaSearch, FaFilter, FaClock } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import AOS from "aos";
 
 const Courts = () => {
   const axiosSecure = useAxios();
@@ -20,6 +22,7 @@ const Courts = () => {
   const [priceFilter, setPriceFilter] = useState("");
   const [courtTypeFilter, setCourtTypeFilter] = useState("");
   const [sortOption, setSortOption] = useState("default");
+
 
   const { data: courts = [], isLoading } = useQuery({
     queryKey: ["courts"],
@@ -36,7 +39,6 @@ const Courts = () => {
     document.getElementById(`booking_modal_${_id}`).showModal();
   };
 
-  // Filter courts based on search and filters
   const filteredCourts = courts.filter((court) => {
     const matchesSearch =
       court.court_type.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -50,7 +52,6 @@ const Courts = () => {
     return matchesSearch && matchesPrice && matchesType;
   });
 
-  // Sort courts
   const sortedCourts = [...filteredCourts].sort((a, b) => {
     switch (sortOption) {
       case "price-low":
@@ -64,22 +65,34 @@ const Courts = () => {
     }
   });
 
-  // Format time slots to group by date if available
   const formatTimeSlots = (slots) => {
-    // If your data evolves to include dates, you can group them here
     return slots;
   };
 
   if (isLoading) return <Loading />;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-28 lg:py-36 xl:py-40">
+      <div className="text-center mb-16" data-aos="fade-down">
+
       <SectionTitle title={"Available"} />
+      </div>
 
       {/* Search and Filter Section */}
-      <div className="mb-10 rounded-lg">
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="mb-10 rounded-lg"
+        data-aos="fade-down"
+      >
         <div className="flex flex-col md:flex-row gap-4 items-center">
-          <div className="relative flex-grow">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="relative flex-grow"
+          >
             <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             <input
               type="text"
@@ -88,17 +101,24 @@ const Courts = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-          </div>
+          </motion.div>
 
-          <div className="flex gap-2 text-xs md:text-sm">
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="flex gap-2 text-xs md:text-sm"
+          >
             <div className="dropdown dropdown-end">
-              <div
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 tabIndex={0}
                 role="button"
-                className="btn btn-sm md:btn-md bg-transparent border border-primary"
+                className="btn btn-sm md:btn-md bg-transparent border border-primary cursor-pointer"
               >
                 <FaFilter className="mr-2" /> Filters
-              </div>
+              </motion.div>
               <ul
                 tabIndex={0}
                 className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-42 mt-2"
@@ -145,16 +165,18 @@ const Courts = () => {
             </div>
 
             <div className="dropdown dropdown-end">
-              <div
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 tabIndex={0}
                 role="button"
-                className="btn btn-sm md:btn-md bg-transparent border border-primary"
+                className="btn btn-sm md:btn-md bg-transparent border border-primary cursor-pointer"
               >
                 Sort
-              </div>
+              </motion.div>
               <ul
                 tabIndex={0}
-                className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-48 mt-2 "
+                className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-48 mt-2"
               >
                 <li>
                   <button onClick={() => setSortOption("default")}>
@@ -180,12 +202,18 @@ const Courts = () => {
                 )}
               </ul>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Results Count */}
-      <div className="mb-4 flex justify-between items-center">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="mb-4 flex justify-between items-center"
+        data-aos="fade-up"
+      >
         <div className="text-sm text-gray-500">
           Showing {sortedCourts.length} of {courts.length} courts
         </div>
@@ -201,111 +229,144 @@ const Courts = () => {
               : "Default"}
           </div>
         )}
-      </div>
+      </motion.div>
 
       {/* Courts Grid */}
-      {sortedCourts.length === 0 ? (
-        <div className="text-center py-12">
-          <h3 className="text-xl font-semibold">
-            No courts found matching your criteria
-          </h3>
-          <button
-            className="btn btn-ghost mt-4"
-            onClick={() => {
-              setSearchTerm("");
-              setPriceFilter("");
-              setCourtTypeFilter("");
-              setSortOption("default");
-            }}
+      <AnimatePresence mode="wait">
+        {sortedCourts.length === 0 ? (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.5 }}
+            className="text-center py-12"
           >
-            Clear all filters
-          </button>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {sortedCourts.map((court) => (
-            <div
-              key={court._id}
-              className="bg-base-100 shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-all flex flex-col hover:scale-[1.02] duration-500 border border-base-200"
+            <h3 className="text-xl font-semibold">
+              No courts found matching your criteria
+            </h3>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="btn btn-ghost mt-4"
+              onClick={() => {
+                setSearchTerm("");
+                setPriceFilter("");
+                setCourtTypeFilter("");
+                setSortOption("default");
+              }}
             >
-              <div className="relative">
-                <img
-                  src={court.image}
-                  alt={court.court_type}
-                  className="w-full h-48 object-cover hover:scale-105 duration-500 "
-                  onError={(e) => {
-                    e.target.src =
-                      "https://via.placeholder.com/300x200?text=Court+Image";
-                  }}
-                />
-                {/* {court.isFeatured && (
-                  <div className="absolute top-2 left-2 bg-primary text-white px-2 py-1 rounded text-xs font-bold">
-                    Featured
-                  </div>
-                )} */}
-              </div>
-
-              <div className="p-4 flex flex-col gap-3 flex-grow">
-                <div className="flex justify-between items-start">
-                  <h3 className="text-lg sm:text-xl font-bold text-secondary">
-                    {court.court_type}
-                  </h3>
-                  <div className="badge badge-primary text-xs sm:text-sm">
-                    ৳{court.price_per_session}/session
-                  </div>
-                </div>
-
-                <div className="mt-2">
-                  <p className="font-semibold mb-1 flex items-center">
-                    <FaClock className="mr-1" /> Available Sessions:
-                  </p>
-                  <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto p-1">
-                    {formatTimeSlots(court.slot_times).map((slot, idx) => (
-                      <span
-                        key={idx}
-                        className="px-2 py-1 rounded-full bg-primary/10 text-primary text-xs"
-                      >
-                        {slot}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mt-auto pt-3">
-                  <button
-                    className="btn btn-primary w-full"
-                    onClick={() => handleBookNow(court._id)}
-                  >
-                    Book Now
-                  </button>
-                </div>
-              </div>
-
-              {/* Booking Modal */}
-              <dialog id={`booking_modal_${court._id}`} className="modal">
-                <div className="modal-box max-w-3xl">
-                  <BookCourtModal
-                    user={user}
-                    court={court}
-                    selectedSlots={selectedSlots}
-                    setSelectedSlots={setSelectedSlots}
-                    bookingDate={bookingDate}
-                    setBookingDate={setBookingDate}
+              Clear all filters
+            </motion.button>
+          </motion.div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {sortedCourts.map((court, index) => (
+              <motion.div
+                key={court._id}
+                data-aos="fade-up"
+                data-aos-delay={index * 50}
+                className="bg-base-100 shadow-md rounded-xl overflow-hidden hover:shadow-2xl transition-all flex flex-col border border-base-200"
+              >
+                <div className="relative overflow-hidden">
+                  <motion.img
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.4 }}
+                    src={court.image}
+                    alt={court.court_type}
+                    className="w-full h-48 object-cover"
+                    onError={(e) => {
+                      e.target.src =
+                        "https://via.placeholder.com/300x200?text=Court+Image";
+                    }}
                   />
-                  <div className="modal-action">
-                    <form method="dialog">
-                      <button className="btn">Close</button>
-                    </form>
+                </div>
+
+                <div className="p-4 flex flex-col gap-3 flex-grow">
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: false }}
+                    transition={{ delay: 0.2 }}
+                    className="flex justify-between items-start"
+                  >
+                    <h3 className="text-lg sm:text-xl font-bold text-secondary">
+                      {court.court_type}
+                    </h3>
+                    <div className="badge badge-primary text-xs sm:text-sm">
+                      ৳{court.price_per_session}/session
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: false }}
+                    transition={{ delay: 0.3 }}
+                    className="mt-2"
+                  >
+                    <p className="font-semibold mb-1 flex items-center">
+                      <FaClock className="mr-1" /> Available Sessions:
+                    </p>
+                    <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto p-1">
+                      {formatTimeSlots(court.slot_times).map((slot, idx) => (
+                        <motion.span
+                          key={idx}
+                          className="px-2 py-1 rounded-full bg-primary/10 text-primary text-xs"
+                        >
+                          {slot}
+                        </motion.span>
+                      ))}
+                    </div>
+                  </motion.div>
+
+                  <div className="mt-auto pt-3">
+                    <motion.button
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      className="btn btn-primary w-full"
+                      onClick={() => handleBookNow(court._id)}
+                    >
+                      Book Now
+                    </motion.button>
                   </div>
                 </div>
-                <form method="dialog" className="modal-backdrop">
-                  <button>close</button>
-                </form>
-              </dialog>
-            </div>
-          ))}
-        </div>
-      )}
+
+                <dialog id={`booking_modal_${court._id}`} className="modal">
+                  <div className="modal-box max-w-3xl">
+                    <BookCourtModal
+                      user={user}
+                      court={court}
+                      selectedSlots={selectedSlots}
+                      setSelectedSlots={setSelectedSlots}
+                      bookingDate={bookingDate}
+                      setBookingDate={setBookingDate}
+                    />
+                    <div className="modal-action">
+                      <button 
+                        className="btn btn-soft btn-error"
+                        onClick={() => document.getElementById(`booking_modal_${court._id}`).close()}
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                  <div 
+                    className="modal-backdrop"
+                    onClick={() => document.getElementById(`booking_modal_${court._id}`).close()}
+                  >
+                    <button></button>
+                  </div>
+                </dialog>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
