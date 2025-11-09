@@ -82,7 +82,7 @@ export default function OurTeam() {
     <div className="">
          {/* <img src={team} alt="" className="max-h-screen w-full object-cover object-center" /> */}
     </div>
-     <div className="min-h-screen  py-16 md:py-20 lg:py-26 xl:py-30 px-4 sm:px-6 lg:px-8">
+     <div className="min-h-screen  py-24 lg:py-36 xl:py-40 px-4 sm:px-6 lg:px-8">
        
       <div className="max-w-7xl mx-auto">
         {/* header */}
@@ -98,7 +98,7 @@ export default function OurTeam() {
         </div>
 
         {/* cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {teamMembers?.map((member, index) => (
             <div
               key={member.id}
