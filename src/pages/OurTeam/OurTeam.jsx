@@ -98,7 +98,7 @@ export default function OurTeam() {
         </div>
 
         {/* cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pt-8 gap-y-20">
           {teamMembers?.map((member, index) => (
             <div
               key={member.id}
@@ -106,9 +106,9 @@ export default function OurTeam() {
               data-aos="fade-up"
               data-aos-delay={index * 100}
             >
-              <figure className="px-6 pt-6">
+              <figure className="px-6 -mt-8">
                 <div className="avatar">
-                  <div className="w-32 h-32 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                  <div className="w-32 h-32 rounded-full ring-2 ring-primary ring-offset-base-100 ring-offset-2">
                     <img 
                       src={member.image} 
                       alt={member.name} 
