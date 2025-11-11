@@ -3,6 +3,7 @@ import Navbar from '../shared/Navbar';
 import { Outlet, useNavigation } from 'react-router';
 import Footer from '../shared/Footer';
 import Loading from '../shared/Loading';
+import ScrollToTop from '../shared/ScrollToTop';
 
 const RootLayout = () => {
     const navigation = useNavigation()
@@ -10,6 +11,7 @@ const RootLayout = () => {
     return (
         <div className='min-h-screen relative'>
             {/* Background Image + Gradient Combined */}
+            <ScrollToTop/>
             <div 
                 className="fixed inset-0 -z-10"
                 style={{
