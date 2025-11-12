@@ -27,7 +27,7 @@ const DashboardLayout = () => {
   const { logOut } = useAuth();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { role, roleLoading } = useUserRole();
-  console.log(role);
+  // console.log(role);
 
   const menuItems = (
     <>
